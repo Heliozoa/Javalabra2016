@@ -1,0 +1,2 @@
+# Lukulista
+Ohjelmoinnin harjoitustyö
