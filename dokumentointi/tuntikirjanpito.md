@@ -1,1 +1,1 @@
-16.12. ~1 tunti projektin alkusäätöön 
+16.12. ~2 tuntia projektin alkusäätöön ja aihemäärittelyyn
