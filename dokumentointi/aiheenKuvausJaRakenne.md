@@ -7,7 +7,7 @@
 
 **Toiminnot:** 
 * Uuden teoksen lisäys
-* Teoksen tietojen päivitys
+* Teoksen tietojen päivitys/poisto
 * Tagin lisääminen
 * Kategoriaan lisääminen
 * Teoksen arvostelu
