@@ -7,6 +7,8 @@ package oma.lukulista.tekija;
  */
 
 import oma.lukulista.listat.TeosLista;
+import oma.lukulista.teos.Kirja;
+import oma.lukulista.testiapurit.EqualsTest;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,6 +21,8 @@ import static org.junit.Assert.*;
  * @author sasami-san
  */
 public class KirjailijaTest {
+    
+    private EqualsTest equalsTest;
     
     public KirjailijaTest() {
     }
@@ -33,6 +37,7 @@ public class KirjailijaTest {
     
     @Before
     public void setUp() {
+        equalsTest = new EqualsTest();
     }
     
     @After
@@ -50,7 +55,7 @@ public class KirjailijaTest {
         Kirjailija isaac = new Kirjailija("Asimov, Isaac", new TeosLista());
         Kirjailija asimov = new Kirjailija("Asimov, Isaac", new TeosLista());
         
-        assertEquals(isaac, asimov);
+        equalsTest.tunnistaaSamat(isaac, asimov);
     }
     
     @Test
@@ -58,6 +63,21 @@ public class KirjailijaTest {
         Kirjailija asimov = new Kirjailija("Asimov, Isaac", new TeosLista());
         Kirjailija joku = new Kirjailija("Waltari, Mika", new TeosLista());
         
-        assertNotEquals(asimov, joku);
+        equalsTest.tunnistaaErit(asimov, joku);
+    }
+    
+    @Test
+    public void equalsNullillaEiTuotaOngelmia(){
+        Tekija t1 = new Kirjailija("Asimov, Isaac", new TeosLista());
+        
+        equalsTest.nullEiTuotaOngelmia(t1);
+    }
+    
+    @Test
+    public void equalsVaarallaLuokallaEiTuotaOngelmia(){
+        Tekija t1 = new Kirjailija("Asimov, Isaac", new TeosLista());
+        Kirja k1 = new Kirja("Säätiö", t1);
+        
+        equalsTest.tunnistaaErit(t1, k1);
     }
 }

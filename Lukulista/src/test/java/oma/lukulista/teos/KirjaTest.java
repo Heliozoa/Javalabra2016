@@ -9,6 +9,7 @@ package oma.lukulista.teos;
 import oma.lukulista.listat.TeosLista;
 import oma.lukulista.tekija.Kirjailija;
 import oma.lukulista.tekija.Tekija;
+import oma.lukulista.testiapurit.EqualsTest;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,6 +22,8 @@ import static org.junit.Assert.*;
  * @author sasami-san
  */
 public class KirjaTest {
+    
+    EqualsTest equalsTest;
     
     public KirjaTest() {
     }
@@ -35,6 +38,7 @@ public class KirjaTest {
     
     @Before
     public void setUp() {
+        equalsTest = new EqualsTest();
     }
     
     @After
@@ -48,7 +52,7 @@ public class KirjaTest {
         Kirja k1 = new Kirja("Säätiö", asimov);
         Kirja k2 = new Kirja("Säätiö", asimov);
         
-        assertEquals(k1, k2);
+        equalsTest.tunnistaaSamat(k1, k2);
     }
     
     @Test
@@ -59,7 +63,7 @@ public class KirjaTest {
         Kirja k1 = new Kirja("Säätiö", asimov);
         Kirja k2 = new Kirja("Säätiö", joku);
         
-        assertNotEquals(k1, k2);
+        equalsTest.tunnistaaErit(k1, k2);
     }
     
     @Test
@@ -69,7 +73,22 @@ public class KirjaTest {
         Kirja k1 = new Kirja("Säätiö", asimov);
         Kirja k2 = new Kirja("I, Robot", asimov);
         
-        assertNotEquals(k1, k2);
+        equalsTest.tunnistaaErit(k1, k2);
+    }
+    
+    @Test
+    public void equalsNullillaEiTuotaOngelmia(){
+        Kirja k1 = new Kirja("Säätiö", new Kirjailija("Asimov, Isaac", new TeosLista()));
+        
+        equalsTest.nullEiTuotaOngelmia(k1);
+    }
+    
+    @Test
+    public void equalsVaarallaLuokallaEiTuotaOngelmia(){
+        Tekija t1 = new Kirjailija("Asimov, Isaac", new TeosLista());
+        Kirja k1 = new Kirja("Säätiö", t1);
+        
+        equalsTest.tunnistaaErit(k1, t1);
     }
     
     

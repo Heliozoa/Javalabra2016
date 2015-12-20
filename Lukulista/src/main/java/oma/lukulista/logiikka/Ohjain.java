@@ -39,26 +39,6 @@ public class Ohjain {
             tekija.lisaaTeos(teos);
         }
     }
-
-    public void tulostaTeos(String teoksenNimi) {
-        Teos teos = teosLista.haeNimella(teoksenNimi);
-
-        if (teos == null) {
-            System.out.println("Ei löytynyt!");
-        } else {
-            System.out.println(teos);
-        }
-    }
-
-    public void tulostaTekija(String tekijanNimi) {
-        Tekija tekija = tekijaLista.haeNimella(tekijanNimi);
-
-        if (tekija == null) {
-            System.out.println("Ei löytynyt!");
-        } else {
-            System.out.println(tekija);
-        }
-    }
     
     public Lista<Teos> getTeosLista(){
         return teosLista;
@@ -79,4 +59,24 @@ public class Ohjain {
         tekijaLista.lisaa(uusi);
         return uusi;
     }
+
+//    public void tulostaTeos(String teoksenNimi) {
+//        Teos teos = teosLista.haeNimella(teoksenNimi);
+//
+//        if (teos == null) {
+//            System.out.println("Ei löytynyt!");
+//        } else {
+//            System.out.println(teos);
+//        }
+//    }
+//
+//    public void tulostaTekija(String tekijanNimi) {
+//        Tekija tekija = tekijaLista.haeNimella(tekijanNimi);
+//
+//        if (tekija == null) {
+//            System.out.println("Ei löytynyt!");
+//        } else {
+//            System.out.println(tekija);
+//        }
+//    }
 }

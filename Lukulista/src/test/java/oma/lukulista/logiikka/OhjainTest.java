@@ -114,5 +114,14 @@ public class OhjainTest {
 
         assertEquals(1, koko);
     }
+    
+    @Test
+    public void kirjaLisataanMyosTekijalle(){
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
+        Tekija asimov = ohjain.getTekijaLista().haeNimella("Asimov, Isaac");
+        boolean loytyiko = asimov.getTeokset().getLista().contains(new Kirja("Säätiö", asimov));
+        
+        assertTrue(loytyiko);
+    }
 
 }
