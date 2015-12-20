@@ -3,3 +3,4 @@
 **18.12.** 1 tunti luokkien miettimiseen ja ohjelmoinnin aloitukseen
 **19.12.** 2 tuntia luokkien suunnitteluun ja ohjelmointiin
 **19.12.** 2 tuntia luokkien toteutukseen ja testien kirjoittamiseen
+**20.12.** 1 tunti luokkakaavion piirtämiseen ja testien viimeistelyyn
