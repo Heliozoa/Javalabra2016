@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package oma.lukulista.main;
+package oma.lukulista.kayttoliittyma;
 
 /**
  *
  * @author sasami-san
  */
-public class Main {
-    
-    public static void main(String[] args){
-        
-        
+public class GraafinenKayttoliittyma implements Kayttoliittyma {
+
+    @Override
+    public void run() {
+
     }
-    
+
 }

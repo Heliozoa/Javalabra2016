@@ -5,11 +5,15 @@
  */
 package oma.lukulista.listat;
 
+import java.util.Collection;
+
 /**
  *
  * @author authority
  */
 public interface Lista<T> {
-    T haeNimella(String nimi);
     void lisaa(T t);
+    T haeNimella(String nimi);
+    int getKoko();
+    Collection getLista();
 }

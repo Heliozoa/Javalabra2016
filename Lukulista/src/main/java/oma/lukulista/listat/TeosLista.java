@@ -37,4 +37,13 @@ public class TeosLista implements Lista<Teos>{
         return null;
     }
     
+    @Override
+    public int getKoko(){
+        return teokset.size();
+    }
+    
+    public List<Teos> getLista(){
+        return teokset;
+    }
+    
 }

@@ -14,7 +14,8 @@ import oma.lukulista.teos.Teos;
  *
  * @author sasami-san
  */
-public class Kirjailija implements Tekija{
+public class Kirjailija implements Tekija {
+
     private String nimi;
     private Lista teokset;
 
@@ -22,20 +23,20 @@ public class Kirjailija implements Tekija{
         this.nimi = nimi;
         this.teokset = teokset;
     }
-    
+
     @Override
-    public void lisaaTeos(Teos teos){
+    public void lisaaTeos(Teos teos) {
         teokset.lisaa(teos);
     }
-    
+
     @Override
-    public String getNimi(){
+    public String getNimi() {
         return nimi;
     }
 
     @Override
     public void setNimi(String nimi) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.nimi = nimi;
     }
 
     @Override
@@ -64,7 +65,7 @@ public class Kirjailija implements Tekija{
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
         return nimi;

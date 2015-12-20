@@ -16,15 +16,20 @@ import oma.lukulista.teos.Teos;
  */
 public class TekijaLista implements Lista<Tekija>{
     
-    private List<Tekija> lista;
+    private List<Tekija> tekijat;
     
     public TekijaLista(){
-        lista = new ArrayList<>();
+        tekijat = new ArrayList<>();
+    }
+
+    @Override
+    public void lisaa(Tekija t) {
+        tekijat.add(t);
     }
 
     @Override
     public Tekija haeNimella(String nimi) {
-        for(Tekija t : lista){
+        for(Tekija t : tekijat){
             if(t.getNimi().equals(nimi)){
                 return t;
             }
@@ -32,9 +37,13 @@ public class TekijaLista implements Lista<Tekija>{
         
         return null;
     }
-
+    
     @Override
-    public void lisaa(Tekija t) {
-        
+    public int getKoko(){
+        return tekijat.size();
+    }
+    
+    public List<Tekija> getLista(){
+        return tekijat;
     }
 }

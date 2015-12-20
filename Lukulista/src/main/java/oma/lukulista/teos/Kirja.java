@@ -21,14 +21,14 @@ public class Kirja implements Teos {
         this.nimi = nimi;
         this.tekija = tekija;
     }
-    
+
     @Override
-    public void setNimi(String nimi){
+    public void setNimi(String nimi) {
         this.nimi = nimi;
     }
-    
+
     @Override
-    public void setTekija(Tekija tekija){
+    public void setTekija(Tekija tekija) {
         this.tekija = tekija;
     }
 
@@ -36,9 +36,9 @@ public class Kirja implements Teos {
     public String getNimi() {
         return nimi;
     }
-    
+
     @Override
-    public Tekija getTekija(){
+    public Tekija getTekija() {
         return tekija;
     }
 
@@ -70,6 +70,6 @@ public class Kirja implements Teos {
 
     @Override
     public String toString() {
-        return nimi +" ("+ tekija +")";
+        return nimi + " (" + tekija + ")";
     }
 }
