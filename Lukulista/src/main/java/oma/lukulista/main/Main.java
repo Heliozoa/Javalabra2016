@@ -7,7 +7,7 @@ package oma.lukulista.main;
 
 import oma.lukulista.teos.Kirja;
 import oma.lukulista.teos.Teos;
-import oma.lukulista.listat.Teoslista;
+import oma.lukulista.listat.Lista;
 
 /**
  *
@@ -16,17 +16,6 @@ import oma.lukulista.listat.Teoslista;
 public class Main {
     
     public static void main(String[] args){
-        Teoslista teoslista = new Teoslista();
-        
-        Teos uusi = new Kirja("Testikirja", "Testikirjailija");
-        Teos uusi2 = new Kirja("Testikirja2", "Testikirjailija2");
-        Teos uusi3 = new Kirja("Testikirja3", "Testikirjailija3");
-        
-        teoslista.lisaaTeos(uusi);
-        teoslista.lisaaTeos(uusi2);
-        teoslista.lisaaTeos(uusi3);
-        
-        System.out.println(teoslista);
         
         
     }

@@ -5,24 +5,16 @@
  */
 package oma.lukulista.tekija;
 
+import oma.lukulista.listat.Lista;
+import oma.lukulista.teos.Teos;
+
 /**
  *
- * @author sasami-san
+ * @author authority
  */
-public class Tekija {
-
-    private String nimi;
-
-    public Tekija(String nimi) {
-        this.nimi = nimi;
-    }
-    
-    public String getNimi(){
-        return nimi;
-    }
-
-    @Override
-    public String toString() {
-        return nimi;
-    }
+public interface Tekija {
+    void setNimi(String nimi);
+    String getNimi();
+    void lisaaTeos(Teos teos);
+    Lista<Teos> getTeokset();
 }

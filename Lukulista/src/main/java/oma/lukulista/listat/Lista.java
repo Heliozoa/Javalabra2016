@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package oma.lukulista.logiikka;
+package oma.lukulista.listat;
 
 /**
  *
- * @author sasami-san
+ * @author authority
  */
-public class Ohjaus {
-    
+public interface Lista<T> {
+    T haeNimella(String nimi);
+    void lisaa(T t);
 }

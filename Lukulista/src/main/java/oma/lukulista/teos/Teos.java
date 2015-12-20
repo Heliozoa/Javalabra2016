@@ -13,7 +13,7 @@ import oma.lukulista.tekija.Tekija;
  */
 public interface Teos {
     void setNimi(String nimi);
-    void setTekija(Tekija tekija);
     String getNimi();
+    void setTekija(Tekija tekija);
     Tekija getTekija();
 }

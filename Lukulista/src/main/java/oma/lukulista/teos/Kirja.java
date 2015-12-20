@@ -5,6 +5,7 @@
  */
 package oma.lukulista.teos;
 
+import java.util.Objects;
 import oma.lukulista.tekija.Tekija;
 
 /**
@@ -16,9 +17,9 @@ public class Kirja implements Teos {
     String nimi;
     Tekija tekija;
 
-    public Kirja(String nimi, String kirjailija) {
+    public Kirja(String nimi, Tekija tekija) {
         this.nimi = nimi;
-        this.tekija = new Tekija(kirjailija);
+        this.tekija = tekija;
     }
     
     @Override
@@ -39,6 +40,32 @@ public class Kirja implements Teos {
     @Override
     public Tekija getTekija(){
         return tekija;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.nimi);
+        hash = 29 * hash + Objects.hashCode(this.tekija);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Kirja other = (Kirja) obj;
+        if (!Objects.equals(this.nimi, other.nimi)) {
+            return false;
+        }
+        if (!Objects.equals(this.tekija, other.tekija)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
