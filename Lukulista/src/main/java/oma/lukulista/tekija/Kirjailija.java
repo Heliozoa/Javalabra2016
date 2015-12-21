@@ -7,7 +7,6 @@ package oma.lukulista.tekija;
 
 import java.util.Objects;
 import oma.lukulista.listat.Lista;
-import oma.lukulista.listat.TeosLista;
 import oma.lukulista.teos.Teos;
 
 /**

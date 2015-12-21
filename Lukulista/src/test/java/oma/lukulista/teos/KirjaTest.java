@@ -6,7 +6,7 @@ package oma.lukulista.teos;
  * and open the template in the editor.
  */
 
-import oma.lukulista.listat.TeosLista;
+import oma.lukulista.listat.Lista;
 import oma.lukulista.tekija.Kirjailija;
 import oma.lukulista.tekija.Tekija;
 import oma.lukulista.testiapurit.EqualsTest;
@@ -15,7 +15,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -47,7 +46,7 @@ public class KirjaTest {
     
     @Test
     public void equalsTunnistaaSamanTekijanSamannimisetSamaksi(){
-        Tekija asimov = new Kirjailija("Asimov, Isaac", new TeosLista());
+        Tekija asimov = new Kirjailija("Asimov, Isaac", new Lista<>());
         
         Kirja k1 = new Kirja("Säätiö", asimov);
         Kirja k2 = new Kirja("Säätiö", asimov);
@@ -57,8 +56,8 @@ public class KirjaTest {
     
     @Test
     public void equalsTunnistaaEriTekijanSamannimisetEriksi(){
-        Tekija asimov = new Kirjailija("Asimov, Isaac", new TeosLista());
-        Tekija joku = new Kirjailija("joku", new TeosLista());
+        Tekija asimov = new Kirjailija("Asimov, Isaac", new Lista<>());
+        Tekija joku = new Kirjailija("joku", new Lista<>());
         
         Kirja k1 = new Kirja("Säätiö", asimov);
         Kirja k2 = new Kirja("Säätiö", joku);
@@ -68,7 +67,7 @@ public class KirjaTest {
     
     @Test
     public void equalsTunnistaaSamanTekijanErinimisetEriksi(){
-        Tekija asimov = new Kirjailija("Asimov, Isaac", new TeosLista());
+        Tekija asimov = new Kirjailija("Asimov, Isaac", new Lista<>());
         
         Kirja k1 = new Kirja("Säätiö", asimov);
         Kirja k2 = new Kirja("I, Robot", asimov);
@@ -78,14 +77,14 @@ public class KirjaTest {
     
     @Test
     public void equalsNullillaEiTuotaOngelmia(){
-        Kirja k1 = new Kirja("Säätiö", new Kirjailija("Asimov, Isaac", new TeosLista()));
+        Kirja k1 = new Kirja("Säätiö", new Kirjailija("Asimov, Isaac", new Lista<>()));
         
         equalsTest.nullEiTuotaOngelmia(k1);
     }
     
     @Test
     public void equalsVaarallaLuokallaEiTuotaOngelmia(){
-        Tekija t1 = new Kirjailija("Asimov, Isaac", new TeosLista());
+        Tekija t1 = new Kirjailija("Asimov, Isaac", new Lista<>());
         Kirja k1 = new Kirja("Säätiö", t1);
         
         equalsTest.tunnistaaErit(k1, t1);

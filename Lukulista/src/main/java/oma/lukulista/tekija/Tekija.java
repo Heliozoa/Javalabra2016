@@ -6,15 +6,15 @@
 package oma.lukulista.tekija;
 
 import oma.lukulista.listat.Lista;
+import oma.lukulista.listat.Nimellinen;
 import oma.lukulista.teos.Teos;
 
 /**
  *
  * @author authority
  */
-public interface Tekija {
+public interface Tekija extends Nimellinen{
     void setNimi(String nimi);
-    String getNimi();
     void lisaaTeos(Teos teos);
     Lista<Teos> getTeokset();
 }

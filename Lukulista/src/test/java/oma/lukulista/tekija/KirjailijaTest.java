@@ -6,7 +6,7 @@ package oma.lukulista.tekija;
  * and open the template in the editor.
  */
 
-import oma.lukulista.listat.TeosLista;
+import oma.lukulista.listat.Lista;
 import oma.lukulista.teos.Kirja;
 import oma.lukulista.testiapurit.EqualsTest;
 import org.junit.After;
@@ -14,7 +14,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -52,30 +51,30 @@ public class KirjailijaTest {
     
     @Test
     public void equalsTunnistaaSamannimisetSamaksi(){
-        Kirjailija isaac = new Kirjailija("Asimov, Isaac", new TeosLista());
-        Kirjailija asimov = new Kirjailija("Asimov, Isaac", new TeosLista());
+        Kirjailija isaac = new Kirjailija("Asimov, Isaac", new Lista<>());
+        Kirjailija asimov = new Kirjailija("Asimov, Isaac", new Lista<>());
         
         equalsTest.tunnistaaSamat(isaac, asimov);
     }
     
     @Test
     public void equalsTunnistaaErinimisetEriksi(){
-        Kirjailija asimov = new Kirjailija("Asimov, Isaac", new TeosLista());
-        Kirjailija joku = new Kirjailija("Waltari, Mika", new TeosLista());
+        Kirjailija asimov = new Kirjailija("Asimov, Isaac", new Lista<>());
+        Kirjailija joku = new Kirjailija("Waltari, Mika", new Lista<>());
         
         equalsTest.tunnistaaErit(asimov, joku);
     }
     
     @Test
     public void equalsNullillaEiTuotaOngelmia(){
-        Tekija t1 = new Kirjailija("Asimov, Isaac", new TeosLista());
+        Tekija t1 = new Kirjailija("Asimov, Isaac", new Lista<>());
         
         equalsTest.nullEiTuotaOngelmia(t1);
     }
     
     @Test
     public void equalsVaarallaLuokallaEiTuotaOngelmia(){
-        Tekija t1 = new Kirjailija("Asimov, Isaac", new TeosLista());
+        Tekija t1 = new Kirjailija("Asimov, Isaac", new Lista<>());
         Kirja k1 = new Kirja("Säätiö", t1);
         
         equalsTest.tunnistaaErit(t1, k1);

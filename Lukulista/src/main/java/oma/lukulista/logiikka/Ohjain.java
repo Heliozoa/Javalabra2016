@@ -5,8 +5,8 @@
  */
 package oma.lukulista.logiikka;
 
+import oma.lukulista.listat.Kokoelma;
 import oma.lukulista.listat.Lista;
-import oma.lukulista.listat.TeosLista;
 import oma.lukulista.tekija.Kirjailija;
 import oma.lukulista.tekija.Tekija;
 import oma.lukulista.teos.Kirja;
@@ -18,17 +18,17 @@ import oma.lukulista.teos.Teos;
  */
 public class Ohjain {
 
-    private Lista<Teos> teosLista;
-    private Lista<Tekija> tekijaLista;
+    private Kokoelma<Teos> teosKokoelma;
+    private Kokoelma<Tekija> tekijaKokoelma;
 
-    public Ohjain(Lista<Teos> teosLista, Lista<Tekija> tekijaLista) {
-        this.teosLista = teosLista;
-        this.tekijaLista = tekijaLista;
+    public Ohjain(Kokoelma<Teos> teosKokoelma, Kokoelma<Tekija> tekijaKokoelma) {
+        this.teosKokoelma = teosKokoelma;
+        this.tekijaKokoelma = tekijaKokoelma;
     }
 
-    public void lisaaUusiKirjaListalle(String teoksenNimi, String tekijanNimi) {
-        Teos teos = teosLista.haeNimella(teoksenNimi);
-        Tekija tekija = tekijaLista.haeNimella(tekijanNimi);
+    public void lisaaUusiKirjaKokoelmalle(String teoksenNimi, String tekijanNimi) {
+        Teos teos = teosKokoelma.haeNimella(teoksenNimi);
+        Tekija tekija = tekijaKokoelma.haeNimella(tekijanNimi);
 
         if (tekija == null) {
             tekija = luoUusiKirjailija(tekijanNimi);
@@ -40,28 +40,28 @@ public class Ohjain {
         }
     }
     
-    public Lista<Teos> getTeosLista(){
-        return teosLista;
+    public Kokoelma<Teos> getTeosKokoelma(){
+        return teosKokoelma;
     }
     
-    public Lista<Tekija> getTekijaLista(){
-        return tekijaLista;
+    public Kokoelma<Tekija> getTekijaKokoelma(){
+        return tekijaKokoelma;
     }
 
     private Kirja luoUusiKirja(String nimi, Tekija tekija) {
         Kirja uusi = new Kirja(nimi, tekija);
-        teosLista.lisaa(uusi);
+        teosKokoelma.lisaa(uusi);
         return uusi;
     }
 
     private Kirjailija luoUusiKirjailija(String nimi) {
-        Kirjailija uusi = new Kirjailija(nimi, new TeosLista());
-        tekijaLista.lisaa(uusi);
+        Kirjailija uusi = new Kirjailija(nimi, new Lista());
+        tekijaKokoelma.lisaa(uusi);
         return uusi;
     }
 
 //    public void tulostaTeos(String teoksenNimi) {
-//        Teos teos = teosLista.haeNimella(teoksenNimi);
+//        Teos teos = teosKokoelma.haeNimella(teoksenNimi);
 //
 //        if (teos == null) {
 //            System.out.println("Ei löytynyt!");
@@ -71,7 +71,7 @@ public class Ohjain {
 //    }
 //
 //    public void tulostaTekija(String tekijanNimi) {
-//        Tekija tekija = tekijaLista.haeNimella(tekijanNimi);
+//        Tekija tekija = tekijaKokoelma.haeNimella(tekijanNimi);
 //
 //        if (tekija == null) {
 //            System.out.println("Ei löytynyt!");

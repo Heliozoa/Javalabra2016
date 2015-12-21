@@ -5,15 +5,15 @@
  */
 package oma.lukulista.listat;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 /**
  *
- * @author authority
+ * @author sasami-san
+ * @param <N>
  */
-public interface Lista<T> {
-    void lisaa(T t);
-    T haeNimella(String nimi);
-    int getKoko();
-    Collection getLista();
+public class Lista<N extends Nimellinen> extends Kokoelma<N>{
+    public Lista(){
+        kokoelma = new ArrayList<>();
+    }
 }
