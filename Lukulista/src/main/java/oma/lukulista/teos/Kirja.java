@@ -6,6 +6,8 @@
 package oma.lukulista.teos;
 
 import java.util.Objects;
+import oma.lukulista.listat.Kokoelma;
+import oma.lukulista.listat.Lista;
 import oma.lukulista.tekija.Tekija;
 
 /**
@@ -16,10 +18,13 @@ public class Kirja implements Teos {
 
     String nimi;
     Tekija tekija;
+    Kategoria kategoria;
+    Kokoelma<Tagi> tagit;
 
     public Kirja(String nimi, Tekija tekija) {
         this.nimi = nimi;
         this.tekija = tekija;
+        tagit = new Lista<>();
     }
 
     @Override
@@ -31,6 +36,14 @@ public class Kirja implements Teos {
     public void setTekija(Tekija tekija) {
         this.tekija = tekija;
     }
+    
+    public void setKategoria(Kategoria kategoria){
+        this.kategoria = kategoria;
+    }
+    
+    public void lisaaTagi(Tagi tagi){
+        tagit.lisaa(tagi);
+    }
 
     @Override
     public String getNimi() {
@@ -40,6 +53,14 @@ public class Kirja implements Teos {
     @Override
     public Tekija getTekija() {
         return tekija;
+    }
+    
+    public Kategoria getKategoria(){
+        return kategoria;
+    }
+    
+    public Kokoelma<Tagi> getTagit(){
+        return tagit;
     }
 
     @Override
