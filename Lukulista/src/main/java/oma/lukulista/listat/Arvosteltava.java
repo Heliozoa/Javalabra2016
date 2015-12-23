@@ -5,11 +5,13 @@
  */
 package oma.lukulista.listat;
 
+import oma.lukulista.teos.Arvosana;
+
 /**
  *
  * @author sasami-san
  */
-public interface Nimellinen {
-    public String getNimi();
-    void setNimi(String nimi);
+public interface Arvosteltava {
+    public void setArvosana(Arvosana arvosana);
+    public Arvosana getArvosana();
 }

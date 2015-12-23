@@ -20,11 +20,13 @@ public class Kirja implements Teos {
     Tekija tekija;
     Kategoria kategoria;
     Kokoelma<Tagi> tagit;
+    Arvosana arvosana;
 
     public Kirja(String nimi, Tekija tekija) {
         this.nimi = nimi;
         this.tekija = tekija;
         tagit = new Lista<>();
+        arvosana = Arvosana.EI_ARVOSTELTU;
     }
 
     @Override
@@ -33,34 +35,48 @@ public class Kirja implements Teos {
     }
 
     @Override
-    public void setTekija(Tekija tekija) {
-        this.tekija = tekija;
-    }
-    
-    public void setKategoria(Kategoria kategoria){
-        this.kategoria = kategoria;
-    }
-    
-    public void lisaaTagi(Tagi tagi){
-        tagit.lisaa(tagi);
+    public String getNimi() {
+        return nimi;
     }
 
     @Override
-    public String getNimi() {
-        return nimi;
+    public void setTekija(Tekija tekija) {
+        this.tekija = tekija;
     }
 
     @Override
     public Tekija getTekija() {
         return tekija;
     }
-    
-    public Kategoria getKategoria(){
+
+    @Override
+    public void setKategoria(Kategoria kategoria) {
+        this.kategoria = kategoria;
+    }
+
+    @Override
+    public Kategoria getKategoria() {
         return kategoria;
     }
-    
-    public Kokoelma<Tagi> getTagit(){
+
+    @Override
+    public void lisaaTagi(Tagi tagi) {
+        tagit.lisaa(tagi);
+    }
+
+    @Override
+    public Kokoelma<Tagi> getTagit() {
         return tagit;
+    }
+
+    @Override
+    public void setArvosana(Arvosana arvosana) {
+        this.arvosana = arvosana;
+    }
+
+    @Override
+    public Arvosana getArvosana() {
+        return arvosana;
     }
 
     @Override

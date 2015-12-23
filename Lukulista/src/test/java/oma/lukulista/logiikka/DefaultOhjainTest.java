@@ -21,13 +21,13 @@ import static org.junit.Assert.*;
  *
  * @author sasami-san
  */
-public class OhjainTest {
+public class DefaultOhjainTest {
 
     private Lista<Teos> teosLista;
     private Lista<Tekija> tekijaLista;
-    private Ohjain ohjain;
+    private DefaultOhjain ohjain;
 
-    public OhjainTest() {
+    public DefaultOhjainTest() {
     }
 
     @BeforeClass
@@ -42,7 +42,7 @@ public class OhjainTest {
     public void setUp() {
         teosLista = new Lista<>();
         tekijaLista = new Lista<>();
-        ohjain = new Ohjain(teosLista, tekijaLista);
+        ohjain = new DefaultOhjain(teosLista, tekijaLista);
     }
 
     @After

@@ -29,6 +29,8 @@ public abstract class Kokoelma<N extends Nimellinen> {
 
         return null;
     }
+    
+    public abstract Kokoelma<N> haku(String hakusana);
 
     public int getKoko() {
         return kokoelma.size();
