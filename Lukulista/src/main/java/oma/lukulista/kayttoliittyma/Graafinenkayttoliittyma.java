@@ -5,6 +5,8 @@
  */
 package oma.lukulista.kayttoliittyma;
 
+import oma.lukulista.kayttoliittyma.paneelit.LisaysPaneeli;
+import oma.lukulista.kayttoliittyma.paneelit.TulostusPaneeli;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;

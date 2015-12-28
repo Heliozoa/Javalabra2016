@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package oma.lukulista.kayttoliittyma;
+package oma.lukulista.kayttoliittyma.paneelit;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import oma.lukulista.kayttoliittyma.toiminnot.TeosLisaaja;
 import oma.lukulista.logiikka.Ohjain;
 
 /**

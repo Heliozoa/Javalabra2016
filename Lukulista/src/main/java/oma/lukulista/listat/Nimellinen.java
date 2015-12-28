@@ -10,6 +10,8 @@ package oma.lukulista.listat;
  * @author sasami-san
  */
 public interface Nimellinen {
+
     public String getNimi();
+
     void setNimi(String nimi);
 }

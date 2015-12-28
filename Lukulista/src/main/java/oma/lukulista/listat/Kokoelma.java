@@ -19,8 +19,8 @@ public abstract class Kokoelma<N extends Nimellinen> {
     public void lisaa(N n) {
         kokoelma.add(n);
     }
-    
-    public void poista(N n){
+
+    public void poista(N n) {
         kokoelma.remove(n);
     }
 
@@ -33,8 +33,6 @@ public abstract class Kokoelma<N extends Nimellinen> {
 
         return null;
     }
-    
-    public abstract Kokoelma<N> haku(String hakusana);
 
     public int getKoko() {
         return kokoelma.size();

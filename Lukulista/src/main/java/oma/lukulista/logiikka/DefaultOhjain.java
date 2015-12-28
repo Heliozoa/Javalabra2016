@@ -16,7 +16,7 @@ import oma.lukulista.teos.Teos;
  *
  * @author sasami-san
  */
-public class DefaultOhjain implements Ohjain{
+public class DefaultOhjain implements Ohjain {
 
     private Kokoelma<Teos> teosKokoelma;
     private Kokoelma<Tekija> tekijaKokoelma;
@@ -40,24 +40,14 @@ public class DefaultOhjain implements Ohjain{
             tekija.lisaaTeos(teos);
         }
     }
-    
+
     @Override
-    public Kokoelma<Teos> teosHaku(String hakusana){
-        return teosKokoelma.haku(hakusana);
-    }
-    
-    @Override
-    public Kokoelma<Tekija> tekijaHaku(String hakusana){
-        return tekijaKokoelma.haku(hakusana);
-    }
-    
-    @Override
-    public Kokoelma<Teos> getTeosKokoelma(){
+    public Kokoelma<Teos> getTeosKokoelma() {
         return teosKokoelma;
     }
-    
+
     @Override
-    public Kokoelma<Tekija> getTekijaKokoelma(){
+    public Kokoelma<Tekija> getTekijaKokoelma() {
         return tekijaKokoelma;
     }
 
