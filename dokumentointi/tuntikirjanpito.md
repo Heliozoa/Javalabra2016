@@ -6,3 +6,5 @@
 **20.12.** 1 tunti luokkakaavion piirtämiseen ja testien viimeistelyyn  
 **21.12.** 1 tunti pajassa luokkien suunnitteluun  
 **21.12.** 2 tuntia luokkien säätöön  
+**24.12.** 1 tunti käyttöliittymän säätöön  
+**28.12.** 2 tuntia graafisen käyttöliittymän aloitukseen  
