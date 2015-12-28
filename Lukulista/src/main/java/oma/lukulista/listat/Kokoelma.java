@@ -5,6 +5,7 @@
  */
 package oma.lukulista.listat;
 
+import oma.lukulista.domain.Nimellinen;
 import java.util.Collection;
 
 /**
@@ -38,7 +39,7 @@ public abstract class Kokoelma<N extends Nimellinen> {
         return kokoelma.size();
     }
 
-    public Collection getKokoelma() {
+    public Collection<N> getKokoelma() {
         return kokoelma;
     }
 }

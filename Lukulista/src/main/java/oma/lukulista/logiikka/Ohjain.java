@@ -6,8 +6,8 @@
 package oma.lukulista.logiikka;
 
 import oma.lukulista.listat.Kokoelma;
-import oma.lukulista.tekija.Tekija;
-import oma.lukulista.teos.Teos;
+import oma.lukulista.domain.tekija.Tekija;
+import oma.lukulista.domain.teos.Teos;
 
 /**
  *

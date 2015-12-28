@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+import oma.lukulista.kayttoliittyma.paneelit.TeosListaPaneeli;
 import oma.lukulista.logiikka.Ohjain;
 
 /**
@@ -30,7 +31,7 @@ public class Graafinenkayttoliittyma implements Kayttoliittyma {
     @Override
     public void run() {
         frame = new JFrame("Lukulista");
-        frame.setPreferredSize(new Dimension(400, 150));
+        frame.setPreferredSize(new Dimension(400, 200));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,12 +44,15 @@ public class Graafinenkayttoliittyma implements Kayttoliittyma {
     private void luoKomponentit(Container container) {
         GridLayout topLayout = new GridLayout(0, 1);
         container.setLayout(topLayout);
+        
 
-        LisaysPaneeli lisaysPaneeli = new LisaysPaneeli(ohjain);
         TulostusPaneeli tulostusPaneeli = new TulostusPaneeli(ohjain);
+        TeosListaPaneeli teosListaPaneeli = new TeosListaPaneeli(ohjain);
+        LisaysPaneeli lisaysPaneeli = new LisaysPaneeli(ohjain, teosListaPaneeli);
 
         container.add(lisaysPaneeli);
         container.add(tulostusPaneeli);
+        container.add(teosListaPaneeli);
     }
 
     public JFrame getFrame() {

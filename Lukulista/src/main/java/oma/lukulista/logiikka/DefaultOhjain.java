@@ -7,10 +7,10 @@ package oma.lukulista.logiikka;
 
 import oma.lukulista.listat.Kokoelma;
 import oma.lukulista.listat.Lista;
-import oma.lukulista.tekija.Kirjailija;
-import oma.lukulista.tekija.Tekija;
-import oma.lukulista.teos.Kirja;
-import oma.lukulista.teos.Teos;
+import oma.lukulista.domain.tekija.Kirjailija;
+import oma.lukulista.domain.tekija.Tekija;
+import oma.lukulista.domain.teos.Kirja;
+import oma.lukulista.domain.teos.Teos;
 
 /**
  *

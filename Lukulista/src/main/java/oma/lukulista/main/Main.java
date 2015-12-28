@@ -13,8 +13,8 @@ import oma.lukulista.listat.Kokoelma;
 import oma.lukulista.listat.Lista;
 import oma.lukulista.logiikka.DefaultOhjain;
 import oma.lukulista.logiikka.Ohjain;
-import oma.lukulista.tekija.Tekija;
-import oma.lukulista.teos.Teos;
+import oma.lukulista.domain.tekija.Tekija;
+import oma.lukulista.domain.teos.Teos;
 
 /**
  *

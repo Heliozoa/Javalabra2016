@@ -21,11 +21,20 @@ import oma.lukulista.logiikka.Ohjain;
 public class LisaysPaneeli extends JPanel {
 
     private Ohjain ohjain;
+    private TeosListaPaneeli lista;
 
     public LisaysPaneeli(Ohjain ohjain) {
         super(new GridLayout(0, 2));
 
         this.ohjain = ohjain;
+        luoKomponentit();
+    }
+
+    public LisaysPaneeli(Ohjain ohjain, TeosListaPaneeli teosLisaaja) {
+        super(new GridLayout(0, 2));
+
+        this.ohjain = ohjain;
+        this.lista = teosLisaaja;
         luoKomponentit();
     }
 
@@ -37,7 +46,7 @@ public class LisaysPaneeli extends JPanel {
         JTextField tekijaField = new JTextField();
 
         JButton lisaysButton = new JButton("Lisää");
-        TeosLisaaja teosLisaaja = new TeosLisaaja(ohjain, nimiField, tekijaField);
+        TeosLisaaja teosLisaaja = new TeosLisaaja(ohjain, nimiField, tekijaField, lista);
         lisaysButton.addActionListener(teosLisaaja);
 
         add(nimiLabel);

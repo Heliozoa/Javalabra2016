@@ -5,6 +5,7 @@
  */
 package oma.lukulista.listat;
 
+import oma.lukulista.domain.Nimellinen;
 import java.util.ArrayList;
 
 /**
