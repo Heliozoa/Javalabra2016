@@ -9,6 +9,7 @@ package oma.lukulista.kayttoliittyma;
  *
  * @author sasami-san
  */
-public interface Kayttoliittyma {
+public interface Kayttoliittyma extends Runnable{
+    @Override
     void run();
 }

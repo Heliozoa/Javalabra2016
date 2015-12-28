@@ -7,7 +7,6 @@ package oma.lukulista.logiikka;
 
 import oma.lukulista.listat.Kokoelma;
 import oma.lukulista.listat.Lista;
-import oma.lukulista.listat.Nimellinen;
 import oma.lukulista.tekija.Kirjailija;
 import oma.lukulista.tekija.Tekija;
 import oma.lukulista.teos.Kirja;
@@ -42,7 +41,14 @@ public class DefaultOhjain implements Ohjain{
         }
     }
     
-    public void haku(String hakusana){
+    @Override
+    public Kokoelma<Teos> teosHaku(String hakusana){
+        return teosKokoelma.haku(hakusana);
+    }
+    
+    @Override
+    public Kokoelma<Tekija> tekijaHaku(String hakusana){
+        return tekijaKokoelma.haku(hakusana);
     }
     
     @Override

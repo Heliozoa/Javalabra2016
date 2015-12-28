@@ -19,6 +19,7 @@ public class Tagi implements Nimellinen{
         this.nimi = nimi;
     }
     
+    @Override
     public void setNimi(String nimi){
         this.nimi = nimi;
     }

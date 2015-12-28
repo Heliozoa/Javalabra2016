@@ -19,6 +19,10 @@ public abstract class Kokoelma<N extends Nimellinen> {
     public void lisaa(N n) {
         kokoelma.add(n);
     }
+    
+    public void poista(N n){
+        kokoelma.remove(n);
+    }
 
     public N haeNimella(String nimi) {
         for (N n : kokoelma) {

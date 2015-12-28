@@ -63,6 +63,11 @@ public class Kirja implements Teos {
     public void lisaaTagi(Tagi tagi) {
         tagit.lisaa(tagi);
     }
+    
+    @Override
+    public void poistaTagi(Tagi tagi){
+        tagit.poista(tagi);
+    }
 
     @Override
     public Kokoelma<Tagi> getTagit() {

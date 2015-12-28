@@ -6,6 +6,7 @@
 package oma.lukulista.main;
 
 import java.util.Scanner;
+import oma.lukulista.kayttoliittyma.Graafinenkayttoliittyma;
 import oma.lukulista.kayttoliittyma.Kayttoliittyma;
 import oma.lukulista.kayttoliittyma.Tekstikayttoliittyma;
 import oma.lukulista.listat.Kokoelma;
@@ -22,7 +23,19 @@ import oma.lukulista.teos.Teos;
 public class Main {
 
     public static void main(String[] args) {
-        tekstikayttoliittyma();
+        //tekstikayttoliittyma();
+        graafinenkayttoliittyma();
+    }
+
+    public static void graafinenkayttoliittyma() {
+        Kokoelma<Teos> teosLista = new Lista<>();
+        Kokoelma<Tekija> tekijaLista = new Lista<>();
+
+        Ohjain ohjain = new DefaultOhjain(teosLista, tekijaLista);
+        
+        Kayttoliittyma kl = new Graafinenkayttoliittyma(ohjain);
+        
+        kl.run();
     }
 
     public static void tekstikayttoliittyma() {

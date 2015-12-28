@@ -16,7 +16,9 @@ import oma.lukulista.teos.Teos;
 public interface Ohjain {
     public void lisaaUusiKirjaKokoelmalle(String teoksenNimi, String tekijanNimi);
     
-    public Kokoelma<Teos> getTeosKokoelma();
+    public Kokoelma<Teos> teosHaku(String hakusana);
+    public Kokoelma<Tekija> tekijaHaku(String hakusana);
     
+    public Kokoelma<Teos> getTeosKokoelma();
     public Kokoelma<Tekija> getTekijaKokoelma();
 }

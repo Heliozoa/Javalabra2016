@@ -15,5 +15,6 @@ import oma.lukulista.teos.Teos;
  */
 public interface Tekija extends Nimellinen{
     void lisaaTeos(Teos teos);
+    void poistaTeos(Teos teos);
     Lista<Teos> getTeokset();
 }

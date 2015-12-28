@@ -5,7 +5,6 @@
  */
 package oma.lukulista.teos;
 
-import oma.lukulista.listat.Arvosteltava;
 import oma.lukulista.listat.Kokoelma;
 import oma.lukulista.listat.Nimellinen;
 import oma.lukulista.tekija.Tekija;
@@ -14,7 +13,7 @@ import oma.lukulista.tekija.Tekija;
  *
  * @author sasami-san
  */
-public interface Teos extends Nimellinen, Arvosteltava{
+public interface Teos extends Nimellinen{
     void setTekija(Tekija tekija);
     Tekija getTekija();
     
@@ -22,5 +21,9 @@ public interface Teos extends Nimellinen, Arvosteltava{
     Kategoria getKategoria();
     
     void lisaaTagi(Tagi tagi);
+    void poistaTagi(Tagi tagi);
     Kokoelma<Tagi> getTagit();
+    
+    void setArvosana(Arvosana arvosana);
+    Arvosana getArvosana();
 }

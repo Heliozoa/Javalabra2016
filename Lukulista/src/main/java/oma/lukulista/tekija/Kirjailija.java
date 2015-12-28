@@ -27,6 +27,11 @@ public class Kirjailija implements Tekija {
     public void lisaaTeos(Teos teos) {
         teokset.lisaa(teos);
     }
+    
+    @Override
+    public void poistaTeos(Teos teos){
+        teokset.poista(teos);
+    }
 
     @Override
     public String getNimi() {
