@@ -35,7 +35,7 @@ public class DefaultOhjain implements Ohjain {
             tekija = luoUusiKirjailija(tekijanNimi);
         }
 
-        if (teos == null) {
+        if (teos == null || !teos.getTekija().equals(tekija)) {
             teos = luoUusiKirja(teoksenNimi, tekija);
             tekija.lisaaTeos(teos);
         }

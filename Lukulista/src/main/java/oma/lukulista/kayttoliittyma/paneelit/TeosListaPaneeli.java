@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import oma.lukulista.domain.teos.Teos;
 import oma.lukulista.logiikka.Ohjain;
 
@@ -20,6 +21,7 @@ public class TeosListaPaneeli extends JPanel {
 
     private Ohjain ohjain;
     private JList list;
+    private JScrollPane scrollPane;
     private DefaultListModel model;
 
     public TeosListaPaneeli(Ohjain ohjain) {
@@ -31,10 +33,19 @@ public class TeosListaPaneeli extends JPanel {
 
     private void luoKomponentit() {
         model = new DefaultListModel();
+        scrollPane = new JScrollPane();
         list = new JList(model);
+        scrollPane.setViewportView(list);
+        list.setVisibleRowCount(20);
+        list.setFixedCellHeight(15);
+        list.setFixedCellWidth(100);
         update();
 
-        add(list);
+        add(scrollPane);
+    }
+    
+    public JList<Teos> getTeosJList(){
+        return list;
     }
     
     public void update(){

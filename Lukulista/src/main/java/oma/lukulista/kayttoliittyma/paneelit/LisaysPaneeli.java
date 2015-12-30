@@ -30,11 +30,11 @@ public class LisaysPaneeli extends JPanel {
         luoKomponentit();
     }
 
-    public LisaysPaneeli(Ohjain ohjain, TeosListaPaneeli teosLisaaja) {
+    public LisaysPaneeli(Ohjain ohjain, TeosListaPaneeli teosListaPaneeli) {
         super(new GridLayout(0, 2));
 
         this.ohjain = ohjain;
-        this.lista = teosLisaaja;
+        this.lista = teosListaPaneeli;
         luoKomponentit();
     }
 
