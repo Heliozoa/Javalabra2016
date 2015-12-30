@@ -8,3 +8,4 @@
 **21.12.** 2 tuntia luokkien säätöön  
 **24.12.** 1 tunti käyttöliittymän säätöön  
 **28.12.** 3 tuntia graafisen käyttöliittymän aloitukseen  
+**30.12.** 3 tuntia graafisen käyttöliittymän jatkamiseen
