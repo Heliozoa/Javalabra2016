@@ -6,10 +6,10 @@
 package oma.lukulista.kayttoliittyma;
 
 /**
- *
- * @author sasami-san
+ * Käyttöliittymärajapinta, jos tulee tarve erilaisille käyttöliittymille.
  */
-public interface Kayttoliittyma extends Runnable{
+public interface Kayttoliittyma extends Runnable {
+
     @Override
     void run();
 }

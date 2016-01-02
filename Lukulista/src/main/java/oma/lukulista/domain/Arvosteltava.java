@@ -6,10 +6,11 @@
 package oma.lukulista.domain;
 
 /**
- *
- * @author sasami-san
+ * Arvosteltavalla luokalla on arvosana jota voi muuttaa.
  */
 public interface Arvosteltava {
+
     public void setArvosana(Arvosana arvosana);
+
     public Arvosana getArvosana();
 }

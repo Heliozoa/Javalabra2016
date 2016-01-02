@@ -5,61 +5,74 @@
  */
 package oma.lukulista.logiikka;
 
-import oma.lukulista.listat.Kokoelma;
-import oma.lukulista.listat.Lista;
+import java.util.List;
 import oma.lukulista.domain.tekija.Kirjailija;
 import oma.lukulista.domain.tekija.Tekija;
 import oma.lukulista.domain.teos.Kirja;
 import oma.lukulista.domain.teos.Teos;
+import oma.lukulista.logiikka.hakukone.Hakukone;
 
 /**
- *
- * @author sasami-san
+ * Perustoteutus Ohjain-rajapinnasta.
  */
 public class DefaultOhjain implements Ohjain {
 
-    private Kokoelma<Teos> teosKokoelma;
-    private Kokoelma<Tekija> tekijaKokoelma;
+    private List<Teos> teosLista;
+    private List<Tekija> tekijaLista;
+    private Hakukone hakukone;
 
-    public DefaultOhjain(Kokoelma<Teos> teosKokoelma, Kokoelma<Tekija> tekijaKokoelma) {
-        this.teosKokoelma = teosKokoelma;
-        this.tekijaKokoelma = tekijaKokoelma;
+    /**
+     *
+     * @param teosLista Ohjaimelle syötetään lista-olio, jolle kaikki teokset
+     * lisätään
+     * @param tekijaLista Ohjaimelle syötetään lista-olio, jolle kaikki tekijät
+     * lisätään
+     */
+    public DefaultOhjain(List<Teos> teosLista, List<Tekija> tekijaLista) {
+        this.teosLista = teosLista;
+        this.tekijaLista = tekijaLista;
+        this.hakukone = new Hakukone();
     }
 
     @Override
-    public void lisaaUusiKirjaKokoelmalle(String teoksenNimi, String tekijanNimi) {
-        Teos teos = teosKokoelma.haeNimella(teoksenNimi);
-        Tekija tekija = tekijaKokoelma.haeNimella(tekijanNimi);
-
-        if (tekija == null) {
-            tekija = luoUusiKirjailija(tekijanNimi);
-        }
+    public void lisaaUusiKirjaListalle(String kirjanNimi, String tekijanNimi) {
+        Teos teos = hakukone.haeTeosNimella(teosLista, kirjanNimi);
+        Tekija tekija = haeKirjailijaTaiLuoUusi(tekijanNimi);
 
         if (teos == null || !teos.getTekija().equals(tekija)) {
-            teos = luoUusiKirja(teoksenNimi, tekija);
-            tekija.lisaaTeos(teos);
+            luoUusiKirja(kirjanNimi, tekija);
         }
     }
 
     @Override
-    public Kokoelma<Teos> getTeosKokoelma() {
-        return teosKokoelma;
+    public Tekija haeKirjailijaTaiLuoUusi(String kirjailijanNimi) {
+        Tekija t = hakukone.haeTekijaNimella(tekijaLista, kirjailijanNimi);
+        if (t == null) {
+            t = luoUusiKirjailija(kirjailijanNimi);
+        }
+
+        return t;
     }
 
     @Override
-    public Kokoelma<Tekija> getTekijaKokoelma() {
-        return tekijaKokoelma;
+    public List<Teos> getTeosLista() {
+        return teosLista;
     }
 
-    private Kirja luoUusiKirja(String nimi, Tekija tekija) {
+    @Override
+    public List<Tekija> getTekijaLista() {
+        return tekijaLista;
+    }
+
+    private void luoUusiKirja(String nimi, Tekija tekija) {
         Kirja uusi = new Kirja(nimi, tekija);
-        teosKokoelma.lisaa(uusi);
-        return uusi;
+        tekija.lisaaTeos(uusi);
+        teosLista.add(uusi);
     }
 
     private Kirjailija luoUusiKirjailija(String nimi) {
-        Kirjailija uusi = new Kirjailija(nimi, new Lista());
-        tekijaKokoelma.lisaa(uusi);
+        Kirjailija uusi = new Kirjailija(nimi);
+        tekijaLista.add(uusi);
         return uusi;
     }
 }

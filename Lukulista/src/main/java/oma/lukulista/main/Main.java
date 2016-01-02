@@ -5,12 +5,10 @@
  */
 package oma.lukulista.main;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 import oma.lukulista.kayttoliittyma.Graafinenkayttoliittyma;
 import oma.lukulista.kayttoliittyma.Kayttoliittyma;
-import oma.lukulista.kayttoliittyma.Tekstikayttoliittyma;
-import oma.lukulista.listat.Kokoelma;
-import oma.lukulista.listat.Lista;
 import oma.lukulista.logiikka.DefaultOhjain;
 import oma.lukulista.logiikka.Ohjain;
 import oma.lukulista.domain.tekija.Tekija;
@@ -22,32 +20,27 @@ import oma.lukulista.domain.teos.Teos;
  */
 public class Main {
 
+    /**
+     * main!
+     *
+     * @param args ???
+     */
     public static void main(String[] args) {
         //tekstikayttoliittyma();
         graafinenkayttoliittyma();
     }
 
+    /**
+     * Luo ja avaa graafisen käyttöliittymän uusilla teos- ja tekijälistoilla.
+     */
     public static void graafinenkayttoliittyma() {
-        Kokoelma<Teos> teosLista = new Lista<>();
-        Kokoelma<Tekija> tekijaLista = new Lista<>();
+        List<Teos> teosLista = new ArrayList<>();
+        List<Tekija> tekijaLista = new ArrayList<>();
 
         Ohjain ohjain = new DefaultOhjain(teosLista, tekijaLista);
-        
+
         Kayttoliittyma kl = new Graafinenkayttoliittyma(ohjain);
-        
-        kl.run();
-    }
-
-    public static void tekstikayttoliittyma() {
-        Kokoelma<Teos> teosLista = new Lista<>();
-        Kokoelma<Tekija> tekijaLista = new Lista<>();
-
-        Ohjain ohjain = new DefaultOhjain(teosLista, tekijaLista);
-        Scanner lukija = new Scanner(System.in);
-
-        Kayttoliittyma kl = new Tekstikayttoliittyma(ohjain, lukija);
 
         kl.run();
     }
-
 }

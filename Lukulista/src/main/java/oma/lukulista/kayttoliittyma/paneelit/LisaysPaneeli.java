@@ -5,36 +5,36 @@
  */
 package oma.lukulista.kayttoliittyma.paneelit;
 
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import oma.lukulista.kayttoliittyma.toiminnot.TeosLisaaja;
+import oma.lukulista.kayttoliittyma.toiminnallisuus.TeosLisaaja;
 import oma.lukulista.logiikka.Ohjain;
 
 /**
- *
- * @author sasami-san
+ * Käyttöliittymän paneeli jolta voi lisätä uusia teoksia Lukulistalle.
  */
 public class LisaysPaneeli extends JPanel {
 
     private Ohjain ohjain;
-    private TeosListaPaneeli lista;
+    private ListaPaneeli lista;
 
-    public LisaysPaneeli(Ohjain ohjain) {
+    /**
+     * Luo tarvittavat komponentit.
+     *
+     * @param ohjain Ohjain jonka kautta teokset lisätään.
+     * @param listaPaneeli Käyttöliittymän ListaPaneeli joka annetaan
+     * TeosLisaajalle parametrina, jotta se pystyy päivittämään listaa lisäyksen
+     * jälkeen.
+     * @see TeosLisaaja
+     */
+    public LisaysPaneeli(Ohjain ohjain, ListaPaneeli listaPaneeli) {
         super(new GridLayout(0, 2));
 
         this.ohjain = ohjain;
-        luoKomponentit();
-    }
-
-    public LisaysPaneeli(Ohjain ohjain, TeosListaPaneeli teosListaPaneeli) {
-        super(new GridLayout(0, 2));
-
-        this.ohjain = ohjain;
-        this.lista = teosListaPaneeli;
+        this.lista = listaPaneeli;
         luoKomponentit();
     }
 

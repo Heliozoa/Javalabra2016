@@ -5,24 +5,23 @@
  */
 package oma.lukulista.domain;
 
-import java.util.Objects;
-import oma.lukulista.domain.Nimellinen;
-
 /**
- *
- * @author authority
+ * Kategoria liittyy teokseen ja merkitsee mihin ryhmään teos kuuluu. Voi olla
+ * esim. genre kuten fantasia. Yksi kategoria voi liittyä moneen teokseen.
  */
-public class Kategoria implements Nimellinen{
+public class Kategoria implements Nimellinen {
+
     private String nimi;
-    
-    public Kategoria(String nimi){
+
+    public Kategoria(String nimi) {
         this.nimi = nimi;
     }
-    
+
     @Override
-    public void setNimi(String nimi){
+    public void setNimi(String nimi) {
         this.nimi = nimi;
     }
+
     @Override
     public String getNimi() {
         return nimi;
@@ -42,15 +41,15 @@ public class Kategoria implements Nimellinen{
             return false;
         }
         final Kategoria other = (Kategoria) obj;
-        if (!Objects.equals(this.nimi, other.nimi)) {
+        if (!this.nimi.equalsIgnoreCase(other.nimi)) {
             return false;
         }
         return true;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return nimi;
     }
-    
+
 }

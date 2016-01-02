@@ -5,11 +5,13 @@ package oma.lukulista.logiikka;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import oma.lukulista.listat.Lista;
+import java.util.ArrayList;
+import java.util.List;
 import oma.lukulista.domain.tekija.Kirjailija;
 import oma.lukulista.domain.tekija.Tekija;
 import oma.lukulista.domain.teos.Kirja;
 import oma.lukulista.domain.teos.Teos;
+import oma.lukulista.logiikka.hakukone.Hakukone;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -23,9 +25,10 @@ import static org.junit.Assert.*;
  */
 public class DefaultOhjainTest {
 
-    private Lista<Teos> teosLista;
-    private Lista<Tekija> tekijaLista;
+    private List<Teos> teosLista;
+    private List<Tekija> tekijaLista;
     private DefaultOhjain ohjain;
+    private Hakukone hakukone;
 
     public DefaultOhjainTest() {
     }
@@ -40,8 +43,8 @@ public class DefaultOhjainTest {
 
     @Before
     public void setUp() {
-        teosLista = new Lista<>();
-        tekijaLista = new Lista<>();
+        teosLista = new ArrayList<>();
+        tekijaLista = new ArrayList<>();
         ohjain = new DefaultOhjain(teosLista, tekijaLista);
     }
 
@@ -51,74 +54,86 @@ public class DefaultOhjainTest {
 
     @Test
     public void kirjanLisaysToimii() {
-        Kirja saatio = new Kirja("Säätiö", new Kirjailija("Asimov, Isaac", new Lista<>()));
-        ohjain.lisaaUusiKirjaKokoelmalle("Säätiö", "Asimov, Isaac");
+        Kirja saatio = new Kirja("Säätiö", new Kirjailija("Asimov, Isaac"));
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
 
-        boolean loytyiko = ohjain.getTeosKokoelma().getKokoelma().contains(saatio);
+        boolean loytyiko = ohjain.getTeosLista().contains(saatio);
 
         assertTrue(loytyiko);
     }
 
     @Test
     public void useanKirjanLisaysToimii() {
-        ohjain.lisaaUusiKirjaKokoelmalle("Säätiö", "Asimov, Isaac");
-        ohjain.lisaaUusiKirjaKokoelmalle("I, Robot", "Asimov, Isaac");
-        ohjain.lisaaUusiKirjaKokoelmalle("Sinuhe", "Waltari, Mika");
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
+        ohjain.lisaaUusiKirjaListalle("I, Robot", "Asimov, Isaac");
+        ohjain.lisaaUusiKirjaListalle("Sinuhe", "Waltari, Mika");
 
-        int koko = ohjain.getTeosKokoelma().getKoko();
+        int koko = ohjain.getTeosLista().size();
 
         assertEquals(3, koko);
     }
 
     @Test
     public void kirjailijanLisaysToimii() {
-        Kirjailija asimov = new Kirjailija("Asimov, Isaac", new Lista<>());
+        Kirjailija asimov = new Kirjailija("Asimov, Isaac");
         Kirja saatio = new Kirja("Säätiö", asimov);
-        ohjain.lisaaUusiKirjaKokoelmalle("Säätiö", "Asimov, Isaac");
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
 
-        boolean loytyiko = ohjain.getTekijaKokoelma().getKokoelma().contains(asimov);
+        boolean loytyiko = ohjain.getTekijaLista().contains(asimov);
 
         assertTrue(loytyiko);
     }
-    
-    @Test
-    public void useanKirjailijanLisaysToimii(){
-        ohjain.lisaaUusiKirjaKokoelmalle("I, Robot", "Asimov, Isaac");
-        ohjain.lisaaUusiKirjaKokoelmalle("Sinuhe", "Waltari, Mika");
 
-        int koko = ohjain.getTekijaKokoelma().getKoko();
+    @Test
+    public void useanKirjailijanLisaysToimii() {
+        ohjain.lisaaUusiKirjaListalle("I, Robot", "Asimov, Isaac");
+        ohjain.lisaaUusiKirjaListalle("Sinuhe", "Waltari, Mika");
+
+        int koko = ohjain.getTekijaLista().size();
 
         assertEquals(2, koko);
-        
+
     }
 
     @Test
     public void kahtaSamaaKirjaaEiLisata() {
-        ohjain.lisaaUusiKirjaKokoelmalle("Säätiö", "Asimov, Isaac");
-        ohjain.lisaaUusiKirjaKokoelmalle("Säätiö", "Asimov, Isaac");
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
 
-        int koko = ohjain.getTeosKokoelma().getKoko();
+        int koko = ohjain.getTeosLista().size();
 
         assertEquals(1, koko);
     }
 
     @Test
     public void kahtaSamaaKirjailijaaEiLisata() {
-        ohjain.lisaaUusiKirjaKokoelmalle("Säätiö", "Asimov, Isaac");
-        ohjain.lisaaUusiKirjaKokoelmalle("I, Robot", "Asimov, Isaac");
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
+        ohjain.lisaaUusiKirjaListalle("I, Robot", "Asimov, Isaac");
 
-        int koko = ohjain.getTekijaKokoelma().getKoko();
+        int koko = ohjain.getTekijaLista().size();
 
         assertEquals(1, koko);
     }
-    
+
     @Test
-    public void kirjaLisataanMyosTekijalle(){
-        ohjain.lisaaUusiKirjaKokoelmalle("Säätiö", "Asimov, Isaac");
-        Tekija asimov = ohjain.getTekijaKokoelma().haeNimella("Asimov, Isaac");
-        boolean loytyiko = asimov.getTeokset().getKokoelma().contains(new Kirja("Säätiö", asimov));
-        
+    public void kirjaLisataanMyosTekijalle() {
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
+        Tekija asimov = ohjain.haeKirjailijaTaiLuoUusi("Asimov, Isaac");
+        boolean loytyiko = asimov.getTeokset().contains(new Kirja("Säätiö", asimov));
+
         assertTrue(loytyiko);
+    }
+
+    @Test
+    public void haeKirjailijaTaiLuoUusiLuoUuden() {
+        ohjain.haeKirjailijaTaiLuoUusi("Muumipappa");
+        assertTrue(ohjain.getTekijaLista().contains(new Kirjailija("Muumipappa")));
+    }
+
+    @Test
+    public void haeKirjailijaTaiLuoUusiHakeeKirjailijan() {
+        Tekija uusi = ohjain.haeKirjailijaTaiLuoUusi("Muumipappa");
+        assertSame(uusi, ohjain.haeKirjailijaTaiLuoUusi("Muumipappa"));
     }
 
 }

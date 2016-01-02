@@ -6,8 +6,6 @@
 package oma.lukulista.kayttoliittyma;
 
 import java.awt.BorderLayout;
-import oma.lukulista.kayttoliittyma.paneelit.LisaysPaneeli;
-import oma.lukulista.kayttoliittyma.paneelit.TulostusPaneeli;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -16,26 +14,44 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-import oma.lukulista.kayttoliittyma.paneelit.TeosListaPaneeli;
-import oma.lukulista.kayttoliittyma.paneelit.TeosTietoPaneeli;
-import oma.lukulista.kayttoliittyma.toiminnot.TeosListaKuuntelija;
+import oma.lukulista.kayttoliittyma.paneelit.LisaysPaneeli;
+import oma.lukulista.kayttoliittyma.paneelit.ListaPaneeli;
+import oma.lukulista.kayttoliittyma.paneelit.TietoPaneeli;
+import oma.lukulista.kayttoliittyma.toiminnallisuus.ListaKuuntelija;
 import oma.lukulista.logiikka.Ohjain;
 
 /**
- *
- * @author sasami-san
+ * Graafinen käyttöliittymä Lukulistalle.
  */
 public class Graafinenkayttoliittyma implements Kayttoliittyma {
 
     private Ohjain ohjain;
     private JFrame frame;
 
-    private TeosListaPaneeli teosListaPaneeli;
-    
+    private LisaysPaneeli lisaysPaneeli;
+    private ListaPaneeli listaPaneeli;
+    private TietoPaneeli tietoPaneeli;
+    private ListaKuuntelija listaKuuntelija;
+
+    /**
+     *
+     * @param ohjain Kaikki käyttöliittymään liittymätön toiminnallisuus
+     * tapahtuu ohjaimen kautta. Käyttöliittymä ei siis luo itse Teoksia jne.
+     */
     public Graafinenkayttoliittyma(Ohjain ohjain) {
         this.ohjain = ohjain;
     }
 
+    /**
+     * Avaa graafisen käyttöliittymän. Luo tarvittavat komponentit ja näyttää
+     * lopputuloksen. Lisää LisaysPaneelin teosten lisäämiseen, ListaPaneelin
+     * lisättyjen teosten näyttämiseen ja TietoPaneelin ListaPaneelissa valitun
+     * teoksen tietojen näyttämistä ja muokkaamista varten.
+     *
+     * @see LisaysPaneeli
+     * @see ListaPaneeli
+     * @see TietoPaneeli
+     */
     @Override
     public void run() {
         frame = new JFrame("Lukulista");
@@ -50,7 +66,7 @@ public class Graafinenkayttoliittyma implements Kayttoliittyma {
     }
 
     private void luoKomponentit(Container container) {
-        GridLayout ylaLayout = new GridLayout(1,2);
+        GridLayout ylaLayout = new GridLayout(1, 2);
         container.setLayout(ylaLayout);
 
         JPanel vasen = alustaVasenPaneeli();
@@ -59,40 +75,41 @@ public class Graafinenkayttoliittyma implements Kayttoliittyma {
         JPanel oikea = alustaOikeaPaneeli();
         container.add(oikea);
     }
-    
-    private JPanel alustaOikeaPaneeli(){
-        JPanel oikea = new JPanel();
-        oikea.setLayout(new BorderLayout());
-        
-        TeosTietoPaneeli teosTietoListaPaneeli = new TeosTietoPaneeli(ohjain);
-        TeosListaKuuntelija teosListaKuuntelija = new TeosListaKuuntelija(ohjain, teosTietoListaPaneeli);
-        teosListaPaneeli.getTeosJList().addListSelectionListener(teosListaKuuntelija);
-        oikea.add(teosTietoListaPaneeli);
-        
-        return oikea;
-    }
-    
-    private JPanel alustaVasenPaneeli(){
+
+    private JPanel alustaVasenPaneeli() {
         JPanel vasen = new JPanel();
         vasen.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
-        TulostusPaneeli tulostusPaneeli = new TulostusPaneeli(ohjain);
-        teosListaPaneeli = new TeosListaPaneeli(ohjain);
-        LisaysPaneeli lisaysPaneeli = new LisaysPaneeli(ohjain, teosListaPaneeli);
+        listaPaneeli = new ListaPaneeli(ohjain);
+        lisaysPaneeli = new LisaysPaneeli(ohjain, listaPaneeli);
 
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         c.fill = GridBagConstraints.HORIZONTAL;
+
         c.gridx = 0;
         c.gridy = 0;
         vasen.add(lisaysPaneeli, c);
+
         c.gridy = 1;
-        vasen.add(tulostusPaneeli, c);
-        c.gridy = 2;
         c.ipady = 200;
-        vasen.add(teosListaPaneeli, c);
-        
+        c.ipadx = 300;
+        vasen.add(listaPaneeli, c);
+
         return vasen;
+    }
+
+    private JPanel alustaOikeaPaneeli() {
+        JPanel oikea = new JPanel();
+        oikea.setLayout(new BorderLayout());
+
+        tietoPaneeli = new TietoPaneeli(ohjain);
+
+        listaPaneeli.getTeosJList().addListSelectionListener(new ListaKuuntelija(ohjain, tietoPaneeli));
+
+        oikea.add(tietoPaneeli);
+
+        return oikea;
     }
 
     public JFrame getFrame() {

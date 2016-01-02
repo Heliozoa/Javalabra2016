@@ -5,16 +5,14 @@
  */
 package oma.lukulista.domain.teos;
 
+import java.util.List;
 import oma.lukulista.domain.Kategoria;
-import oma.lukulista.domain.Tagi;
 import oma.lukulista.domain.Arvosteltava;
-import oma.lukulista.listat.Kokoelma;
 import oma.lukulista.domain.Nimellinen;
 import oma.lukulista.domain.tekija.Tekija;
 
 /**
- *
- * @author sasami-san
+ * Sisältää teoksen attribuutit
  */
 public interface Teos extends Nimellinen, Arvosteltava {
 
@@ -30,5 +28,5 @@ public interface Teos extends Nimellinen, Arvosteltava {
 
     void poistaTagi(Tagi tagi);
 
-    Kokoelma<Tagi> getTagit();
+    List<Tagi> getTagit();
 }

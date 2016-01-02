@@ -5,19 +5,40 @@
  */
 package oma.lukulista.logiikka;
 
-import oma.lukulista.listat.Kokoelma;
+import java.util.List;
 import oma.lukulista.domain.tekija.Tekija;
 import oma.lukulista.domain.teos.Teos;
 
 /**
- *
- * @author sasami-san
+ * Erottaa käyttöliittymän logiikasta, käyttöliittymä kutsuu ohjaimen metodeja
+ * joka hoitaa varsinaiset toiminnat.
  */
 public interface Ohjain {
 
-    public void lisaaUusiKirjaKokoelmalle(String teoksenNimi, String tekijanNimi);
+    /**
+     *
+     * Luo uuden kirjan jos samannimisen tekijän samannimistä kirjaa ei ole jo
+     * olemassa. Tarkistaa, onko samanniminen tekijä jo olemassa, jos ei niin
+     * luodaan uusi. Tämän jälkeen tarkistetaan onko samannimistä kirjaa
+     * olemassa kyseysellä tekijällä. Jos ei, luodaan uusi kirja joka lisätään
+     * listalle.
+     *
+     * @param kirjanNimi Lisättävän kirjan nimi
+     * @param tekijanNimi Lisättävän kirjan tekijän nimi
+     */
+    public void lisaaUusiKirjaListalle(String kirjanNimi, String tekijanNimi);
 
-    public Kokoelma<Teos> getTeosKokoelma();
+    /**
+     * Etsii nimen perusteella kirjailijaa. Jos kyseistä kirjailijaa ei löydy,
+     * niin metodi luo uuden.
+     *
+     * @param kirjailijanNimi Etsittävän kirjailijan nimi
+     * @return Palauttaa joko löytyneen kirjailijan tai vastaluodun uuden
+     * kirjailijan
+     */
+    public Tekija haeKirjailijaTaiLuoUusi(String kirjailijanNimi);
 
-    public Kokoelma<Tekija> getTekijaKokoelma();
+    public List<Teos> getTeosLista();
+
+    public List<Tekija> getTekijaLista();
 }

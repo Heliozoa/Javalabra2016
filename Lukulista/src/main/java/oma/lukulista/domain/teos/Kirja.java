@@ -5,30 +5,26 @@
  */
 package oma.lukulista.domain.teos;
 
+import java.util.ArrayList;
+import java.util.List;
 import oma.lukulista.domain.Arvosana;
 import oma.lukulista.domain.Kategoria;
-import oma.lukulista.domain.Tagi;
 import java.util.Objects;
-import oma.lukulista.listat.Kokoelma;
-import oma.lukulista.listat.Lista;
 import oma.lukulista.domain.tekija.Tekija;
 
-/**
- *
- * @author sasami-san
- */
 public class Kirja implements Teos {
 
     String nimi;
     Tekija tekija;
     Kategoria kategoria;
-    Kokoelma<Tagi> tagit;
+    List<Tagi> tagit;
     Arvosana arvosana;
 
     public Kirja(String nimi, Tekija tekija) {
         this.nimi = nimi;
         this.tekija = tekija;
-        tagit = new Lista<>();
+        kategoria = new Kategoria("Tyhjä");
+        tagit = new ArrayList<>();
         arvosana = Arvosana.EI_ARVOSTELTU;
     }
 
@@ -64,16 +60,16 @@ public class Kirja implements Teos {
 
     @Override
     public void lisaaTagi(Tagi tagi) {
-        tagit.lisaa(tagi);
-    }
-    
-    @Override
-    public void poistaTagi(Tagi tagi){
-        tagit.poista(tagi);
+        tagit.add(tagi);
     }
 
     @Override
-    public Kokoelma<Tagi> getTagit() {
+    public void poistaTagi(Tagi tagi) {
+        tagit.remove(tagi);
+    }
+
+    @Override
+    public List<Tagi> getTagit() {
         return tagit;
     }
 
@@ -104,7 +100,7 @@ public class Kirja implements Teos {
             return false;
         }
         final Kirja other = (Kirja) obj;
-        if (!Objects.equals(this.nimi, other.nimi)) {
+        if (!this.nimi.equalsIgnoreCase(other.nimi)) {
             return false;
         }
         if (!Objects.equals(this.tekija, other.tekija)) {

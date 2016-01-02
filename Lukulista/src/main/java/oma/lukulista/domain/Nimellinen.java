@@ -6,8 +6,7 @@
 package oma.lukulista.domain;
 
 /**
- *
- * @author sasami-san
+ * Nimellisellä on nimi.
  */
 public interface Nimellinen {
 

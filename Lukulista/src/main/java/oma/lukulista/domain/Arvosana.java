@@ -6,24 +6,25 @@
 package oma.lukulista.domain;
 
 /**
- *
- * @author sasami-san
+ * Arvosana asteikolla 1-5, missä 0 merkitsee vielä arvostelematonta.
  */
 public enum Arvosana {
-    EI_ARVOSTELTU(0), HUONO(1), OK(2), HYVA(3), ERINOMAINEN(4), PARAS(5);
-    
+    EI_ARVOSTELTU(0, "Ei arvosteltu"), HUONO(1, "Huono"), OK(2, "Ok"), HYVA(3, "Hyvä"), ERINOMAINEN(4, "Erinomainen"), PARAS(5, "Paras");
+
     private int arvosana;
-    
-    Arvosana(int arvosana){
+    private String kuvaus;
+
+    Arvosana(int arvosana, String kuvaus) {
         this.arvosana = arvosana;
+        this.kuvaus = kuvaus;
     }
-    
-    public int getArvosana(){
+
+    public int getArvosana() {
         return arvosana;
     }
-    
+
     @Override
-    public String toString(){
-        return arvosana+"";
+    public String toString() {
+        return arvosana + " (" + kuvaus + ")";
     }
 }

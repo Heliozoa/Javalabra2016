@@ -9,3 +9,4 @@
 **24.12.** 1 tunti käyttöliittymän säätöön  
 **28.12.** 3 tuntia graafisen käyttöliittymän aloitukseen  
 **30.12.** 3 tuntia graafisen käyttöliittymän jatkamiseen
+**2.1.** 3 tuntia graafisen käyttöliittymän jatkamiseen, javadociin, refaktorointiin

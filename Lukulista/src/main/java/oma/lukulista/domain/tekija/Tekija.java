@@ -5,14 +5,13 @@
  */
 package oma.lukulista.domain.tekija;
 
+import java.util.List;
 import oma.lukulista.domain.Arvosteltava;
-import oma.lukulista.listat.Lista;
 import oma.lukulista.domain.Nimellinen;
 import oma.lukulista.domain.teos.Teos;
 
 /**
- *
- * @author authority
+ * Sisältää tekijän attribuutit sekä listan teoksista
  */
 public interface Tekija extends Nimellinen, Arvosteltava {
 
@@ -20,5 +19,5 @@ public interface Tekija extends Nimellinen, Arvosteltava {
 
     void poistaTeos(Teos teos);
 
-    Lista<Teos> getTeokset();
+    List<Teos> getTeokset();
 }

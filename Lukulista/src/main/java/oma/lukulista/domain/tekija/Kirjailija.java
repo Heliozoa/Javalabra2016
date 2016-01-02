@@ -5,34 +5,30 @@
  */
 package oma.lukulista.domain.tekija;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 import oma.lukulista.domain.Arvosana;
-import oma.lukulista.listat.Lista;
 import oma.lukulista.domain.teos.Teos;
 
-/**
- *
- * @author sasami-san
- */
 public class Kirjailija implements Tekija {
 
     private String nimi;
-    private Lista teokset;
+    private List<Teos> teokset;
     private Arvosana arvosana;
 
-    public Kirjailija(String nimi, Lista teokset) {
+    public Kirjailija(String nimi) {
         this.nimi = nimi;
-        this.teokset = teokset;
+        this.teokset = new ArrayList<>();
     }
 
     @Override
     public void lisaaTeos(Teos teos) {
-        teokset.lisaa(teos);
+        teokset.add(teos);
     }
 
     @Override
     public void poistaTeos(Teos teos) {
-        teokset.poista(teos);
+        teokset.remove(teos);
     }
 
     @Override
@@ -46,7 +42,7 @@ public class Kirjailija implements Tekija {
     }
 
     @Override
-    public Lista<Teos> getTeokset() {
+    public List<Teos> getTeokset() {
         return teokset;
     }
 
@@ -74,7 +70,7 @@ public class Kirjailija implements Tekija {
             return false;
         }
         final Kirjailija other = (Kirjailija) obj;
-        if (!Objects.equals(this.nimi, other.nimi)) {
+        if (!this.nimi.equalsIgnoreCase(other.nimi)) {
             return false;
         }
         return true;
