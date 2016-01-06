@@ -11,6 +11,7 @@ import oma.lukulista.domain.tekija.Tekija;
 import oma.lukulista.domain.teos.Kirja;
 import oma.lukulista.domain.teos.Teos;
 import oma.lukulista.logiikka.hakukone.Hakukone;
+import oma.lukulista.logiikka.muistio.Muistio;
 
 /**
  * Perustoteutus Ohjain-rajapinnasta.
@@ -20,6 +21,7 @@ public class DefaultOhjain implements Ohjain {
     private List<Teos> teosLista;
     private List<Tekija> tekijaLista;
     private Hakukone hakukone;
+    private Muistio tallentaja;
 
     /**
      *
@@ -32,8 +34,9 @@ public class DefaultOhjain implements Ohjain {
         this.teosLista = teosLista;
         this.tekijaLista = tekijaLista;
         this.hakukone = new Hakukone();
+        this.tallentaja = new Muistio();
     }
-
+    
     @Override
     public void lisaaUusiKirjaListalle(String kirjanNimi, String tekijanNimi) {
         Teos teos = hakukone.haeTeosNimella(teosLista, kirjanNimi);
@@ -43,7 +46,7 @@ public class DefaultOhjain implements Ohjain {
             luoUusiKirja(kirjanNimi, tekija);
         }
     }
-
+    
     @Override
     public Tekija haeKirjailijaTaiLuoUusi(String kirjailijanNimi) {
         Tekija t = hakukone.haeTekijaNimella(tekijaLista, kirjailijanNimi);
@@ -74,5 +77,36 @@ public class DefaultOhjain implements Ohjain {
         Kirjailija uusi = new Kirjailija(nimi);
         tekijaLista.add(uusi);
         return uusi;
+    }
+
+    @Override
+    public void poistaTeosListalta(Teos poistettava) {
+        teosLista.remove(poistettava);
+
+        Tekija t = poistettava.getTekija();
+
+        if (t.getTeokset().isEmpty()) {
+            tekijaLista.remove(t);
+        }
+    }
+
+    @Override
+    public void tallenna() {
+        tallentaja.tallenna(teosLista);
+    }
+
+    @Override
+    public void lataa() {
+        List<Teos> lista = tallentaja.lataa();
+
+        if (lista != null) {
+            teosLista = lista;
+        }
+
+        for (Teos t : teosLista) {
+            if (!tekijaLista.contains(t.getTekija())) {
+                tekijaLista.add(t.getTekija());
+            }
+        }
     }
 }

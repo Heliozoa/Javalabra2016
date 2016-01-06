@@ -8,7 +8,6 @@ package oma.lukulista.domain.teos;
 import java.util.ArrayList;
 import java.util.List;
 import oma.lukulista.domain.Arvosana;
-import oma.lukulista.domain.Kategoria;
 import java.util.Objects;
 import oma.lukulista.domain.tekija.Tekija;
 
@@ -16,14 +15,14 @@ public class Kirja implements Teos {
 
     String nimi;
     Tekija tekija;
-    Kategoria kategoria;
-    List<Tagi> tagit;
+    String kategoria;
+    List<String> tagit;
     Arvosana arvosana;
 
     public Kirja(String nimi, Tekija tekija) {
         this.nimi = nimi;
         this.tekija = tekija;
-        kategoria = new Kategoria("Tyhjä");
+        kategoria = "";
         tagit = new ArrayList<>();
         arvosana = Arvosana.EI_ARVOSTELTU;
     }
@@ -49,27 +48,27 @@ public class Kirja implements Teos {
     }
 
     @Override
-    public void setKategoria(Kategoria kategoria) {
+    public void setKategoria(String kategoria) {
         this.kategoria = kategoria;
     }
 
     @Override
-    public Kategoria getKategoria() {
+    public String getKategoria() {
         return kategoria;
     }
 
     @Override
-    public void lisaaTagi(Tagi tagi) {
+    public void lisaaTagi(String tagi) {
         tagit.add(tagi);
     }
 
     @Override
-    public void poistaTagi(Tagi tagi) {
+    public void poistaTagi(String tagi) {
         tagit.remove(tagi);
     }
 
     @Override
-    public List<Tagi> getTagit() {
+    public List<String> getTagit() {
         return tagit;
     }
 

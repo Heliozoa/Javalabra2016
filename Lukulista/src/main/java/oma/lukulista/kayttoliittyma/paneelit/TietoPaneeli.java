@@ -6,12 +6,15 @@
 package oma.lukulista.kayttoliittyma.paneelit;
 
 import java.awt.GridLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import oma.lukulista.domain.teos.Teos;
-import oma.lukulista.kayttoliittyma.toiminnallisuus.NimiMuutosKuuntelija;
-import oma.lukulista.kayttoliittyma.toiminnallisuus.TekijaMuutosKuuntelija;
+import oma.lukulista.kayttoliittyma.komponentit.ArvosanaComboBox;
+import oma.lukulista.kayttoliittyma.toiminnallisuus.TeosPaivittaja;
+import oma.lukulista.kayttoliittyma.toiminnallisuus.TeosPoistaja;
 import oma.lukulista.logiikka.Ohjain;
 
 /**
@@ -28,7 +31,11 @@ public class TietoPaneeli extends JPanel {
     private JLabel kategoriaLabel;
     private JTextField kategoriaField;
     private JLabel arvosanaLabel;
-    private JTextField arvosanaField;
+    private JComboBox arvosanat;
+    private JButton paivitysButton;
+    private JButton poistoButton;
+
+    private ListaPaneeli lista;
     private Teos nykyinenValinta;
 
     /**
@@ -40,10 +47,11 @@ public class TietoPaneeli extends JPanel {
      * @see NimiMuutosKuuntelija
      * @see TekijaMuutosKuuntelija
      */
-    public TietoPaneeli(Ohjain ohjain) {
+    public TietoPaneeli(Ohjain ohjain, ListaPaneeli lista) {
         super(new GridLayout(0, 2));
 
         this.ohjain = ohjain;
+        this.lista = lista;
         luoKomponentit();
     }
 
@@ -55,10 +63,12 @@ public class TietoPaneeli extends JPanel {
         kategoriaLabel = new JLabel("Kategoria");
         kategoriaField = new JTextField();
         arvosanaLabel = new JLabel("Arvosana:");
-        arvosanaField = new JTextField();
+        arvosanat = new ArvosanaComboBox();
+        paivitysButton = new JButton("Päivitä");
+        poistoButton = new JButton("Poista");
 
-        nimiField.getDocument().addDocumentListener(new NimiMuutosKuuntelija(ohjain, nimiField, this));
-        tekijaField.getDocument().addDocumentListener(new TekijaMuutosKuuntelija(ohjain, tekijaField, this));
+        paivitysButton.addActionListener(new TeosPaivittaja(ohjain, lista, this));
+        poistoButton.addActionListener(new TeosPoistaja(ohjain, this));
 
         add(nimiLabel);
         add(nimiField);
@@ -67,19 +77,41 @@ public class TietoPaneeli extends JPanel {
         add(kategoriaLabel);
         add(kategoriaField);
         add(arvosanaLabel);
-        add(arvosanaField);
+        add(arvosanat);
+        add(paivitysButton);
+        add(poistoButton);
     }
-
+    
+    /**
+     * Näyttää paneelissa parametrina annetun teoksen tiedot.
+     * @param t Näytettävä teos.
+     */
     public void naytaTeos(Teos t) {
         nykyinenValinta = t;
         nimiField.setText(t.getNimi());
         tekijaField.setText(t.getTekija().getNimi());
-        kategoriaField.setText(t.getKategoria().toString());
-        arvosanaField.setText(t.getArvosana().toString());
+        kategoriaField.setText(t.getKategoria());
+        arvosanat.setSelectedItem(t.getArvosana());
     }
 
     public Teos getNykyinenValinta() {
         return nykyinenValinta;
+    }
+
+    public JTextField getNimiField() {
+        return nimiField;
+    }
+
+    public JTextField getTekijaField() {
+        return tekijaField;
+    }
+
+    public JTextField getKategoriaField() {
+        return kategoriaField;
+    }
+
+    public JComboBox getArvosanat() {
+        return arvosanat;
     }
 
 }

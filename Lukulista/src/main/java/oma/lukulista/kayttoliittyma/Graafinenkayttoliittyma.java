@@ -31,7 +31,6 @@ public class Graafinenkayttoliittyma implements Kayttoliittyma {
     private LisaysPaneeli lisaysPaneeli;
     private ListaPaneeli listaPaneeli;
     private TietoPaneeli tietoPaneeli;
-    private ListaKuuntelija listaKuuntelija;
 
     /**
      *
@@ -43,10 +42,11 @@ public class Graafinenkayttoliittyma implements Kayttoliittyma {
     }
 
     /**
-     * Avaa graafisen käyttöliittymän. Luo tarvittavat komponentit ja näyttää
-     * lopputuloksen. Lisää LisaysPaneelin teosten lisäämiseen, ListaPaneelin
-     * lisättyjen teosten näyttämiseen ja TietoPaneelin ListaPaneelissa valitun
-     * teoksen tietojen näyttämistä ja muokkaamista varten.
+     * Avaa graafisen käyttöliittymän. Lataa aluksi teoslistan tiedostosta. Luo
+     * tarvittavat komponentit ja näyttää lopputuloksen. Lisää LisaysPaneelin
+     * teosten lisäämiseen, ListaPaneelin lisättyjen teosten näyttämiseen ja
+     * TietoPaneelin ListaPaneelissa valitun teoksen tietojen näyttämistä ja
+     * muokkaamista varten.
      *
      * @see LisaysPaneeli
      * @see ListaPaneeli
@@ -54,6 +54,8 @@ public class Graafinenkayttoliittyma implements Kayttoliittyma {
      */
     @Override
     public void run() {
+        ohjain.lataa();
+
         frame = new JFrame("Lukulista");
         frame.setPreferredSize(new Dimension(800, 400));
 
@@ -103,9 +105,9 @@ public class Graafinenkayttoliittyma implements Kayttoliittyma {
         JPanel oikea = new JPanel();
         oikea.setLayout(new BorderLayout());
 
-        tietoPaneeli = new TietoPaneeli(ohjain);
+        tietoPaneeli = new TietoPaneeli(ohjain, listaPaneeli);
 
-        listaPaneeli.getTeosJList().addListSelectionListener(new ListaKuuntelija(ohjain, tietoPaneeli));
+        listaPaneeli.getTeosJList().addListSelectionListener(new ListaKuuntelija(tietoPaneeli));
 
         oikea.add(tietoPaneeli);
 

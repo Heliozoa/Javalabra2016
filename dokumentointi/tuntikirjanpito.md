@@ -8,5 +8,6 @@
 **21.12.** 2 tuntia luokkien säätöön  
 **24.12.** 1 tunti käyttöliittymän säätöön  
 **28.12.** 3 tuntia graafisen käyttöliittymän aloitukseen  
-**30.12.** 3 tuntia graafisen käyttöliittymän jatkamiseen
-**2.1.** 3 tuntia graafisen käyttöliittymän jatkamiseen, javadociin, refaktorointiin
+**30.12.** 3 tuntia graafisen käyttöliittymän jatkamiseen  
+**2.1.** 3 tuntia graafisen käyttöliittymän jatkamiseen, javadociin, refaktorointiin  
+**6.1.** 2,5 tuntia tiedostoon tallennuksen/latauksen toteutukseen, käyttöliittymän säätöön, koodin yksinkertaistamiseen  

@@ -9,7 +9,7 @@ package oma.lukulista.domain;
  * Arvosana asteikolla 1-5, missä 0 merkitsee vielä arvostelematonta.
  */
 public enum Arvosana {
-    EI_ARVOSTELTU(0, "Ei arvosteltu"), HUONO(1, "Huono"), OK(2, "Ok"), HYVA(3, "Hyvä"), ERINOMAINEN(4, "Erinomainen"), PARAS(5, "Paras");
+    EI_ARVOSTELTU(0, "Ei arvosteltu"), HUONO(1, "Huono"), OK(2, "Ok"), HYVA(3, "Hyvä"), ERITTAIN_HYVA(4, "Erittäin hyvä"), ERINOMAINEN(5, "Erinomainen");
 
     private int arvosana;
     private String kuvaus;

@@ -41,4 +41,22 @@ public interface Ohjain {
     public List<Teos> getTeosLista();
 
     public List<Tekija> getTekijaLista();
+
+    /**
+     * Tallentaa teoslistan tiedostoon Muistion avulla.
+     */
+    public void tallenna();
+
+    /**
+     * Lataa teoslistan tiedostosta muistion avulla.
+     */
+    public void lataa();
+
+    /**
+     * Poistaa teoksen listalta. Jälkeenpäin tarkistaa, jääkö poistetun teoksen
+     * tekijälle enää yhtään kirjaa. Jos ei, myös tekijä poistetaan turhana.
+     *
+     * @param poistettava Poistettava teos.
+     */
+    public void poistaTeosListalta(Teos poistettava);
 }

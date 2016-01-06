@@ -12,8 +12,7 @@ import oma.lukulista.kayttoliittyma.paneelit.ListaPaneeli;
 import oma.lukulista.logiikka.Ohjain;
 
 /**
- *
- * @author sasami-san
+ * Toiminnallisuus teosten lisäämiseen.
  */
 public class TeosLisaaja implements ActionListener {
 
@@ -22,6 +21,13 @@ public class TeosLisaaja implements ActionListener {
     private JTextField tekijaField;
     private ListaPaneeli lista;
 
+    /**
+     *
+     * @param ohjain Ohjain hoitaa itse lisäyksen logiikan.
+     * @param nimiField Lisättävän teoksen nimi saadaan tästä kentästä.
+     * @param tekijaField Lisättävän tekijän nimi saadaan tästä kentästä.
+     * @param lista Tämä lista päivitetään lisäyksen tapahduttua.
+     */
     public TeosLisaaja(Ohjain ohjain, JTextField nimiField, JTextField tekijaField, ListaPaneeli lista) {
         this.ohjain = ohjain;
         this.nimiField = nimiField;
@@ -29,6 +35,12 @@ public class TeosLisaaja implements ActionListener {
         this.lista = lista;
     }
 
+    /**
+     * Luodaan uusi teos ja päivitetään graafinen lista. Jos nimiField tai
+     * tekijaField ovat tyhjiä, ei tehdä mitään. Tallentaa teoslistan tiedostoon.
+     *
+     * @param ae
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
         String teoksenNimi = nimiField.getText();
@@ -42,6 +54,7 @@ public class TeosLisaaja implements ActionListener {
         nimiField.setText("");
         tekijaField.setText("");
         lista.paivita();
+        ohjain.tallenna();
     }
 
 }

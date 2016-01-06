@@ -6,29 +6,32 @@
 package oma.lukulista.kayttoliittyma.toiminnallisuus;
 
 import javax.swing.JList;
-import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import oma.lukulista.domain.teos.Teos;
-import oma.lukulista.kayttoliittyma.paneelit.ListaPaneeli;
 import oma.lukulista.kayttoliittyma.paneelit.TietoPaneeli;
-import oma.lukulista.logiikka.Ohjain;
 
 /**
- *
- * @author authority
+ * Päivittää TietoPaneelin automaattisesti kun listalla (johon ListaKuuntelija
+ * kiinnitetään) valitaan jotain.
  */
 public class ListaKuuntelija implements ListSelectionListener {
 
-    private Ohjain ohjain;
-    private JList<Teos> teosJList;
     private TietoPaneeli tiedot;
 
-    public ListaKuuntelija(Ohjain ohjain, TietoPaneeli tiedot) {
-        this.ohjain = ohjain;
+    /**
+     *
+     * @param tiedot TietoPaneeli jolla valitun teoksen tiedot halutaan näyttää.
+     */
+    public ListaKuuntelija(TietoPaneeli tiedot) {
         this.tiedot = tiedot;
     }
 
+    /**
+     * Näyttää TietoPaneelissa valitun teoksen tiedot.
+     *
+     * @param lse
+     */
     @Override
     public void valueChanged(ListSelectionEvent lse) {
         JList<Teos> lista = (JList<Teos>) lse.getSource();

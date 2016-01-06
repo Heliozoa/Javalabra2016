@@ -5,8 +5,8 @@
  */
 package oma.lukulista.domain.teos;
 
+import java.io.Serializable;
 import java.util.List;
-import oma.lukulista.domain.Kategoria;
 import oma.lukulista.domain.Arvosteltava;
 import oma.lukulista.domain.Nimellinen;
 import oma.lukulista.domain.tekija.Tekija;
@@ -14,19 +14,19 @@ import oma.lukulista.domain.tekija.Tekija;
 /**
  * Sisältää teoksen attribuutit
  */
-public interface Teos extends Nimellinen, Arvosteltava {
+public interface Teos extends Nimellinen, Arvosteltava, Serializable {
 
     void setTekija(Tekija tekija);
 
     Tekija getTekija();
 
-    void setKategoria(Kategoria kategoria);
+    void setKategoria(String kategoria);
 
-    Kategoria getKategoria();
+    String getKategoria();
 
-    void lisaaTagi(Tagi tagi);
+    void lisaaTagi(String tagi);
 
-    void poistaTagi(Tagi tagi);
+    void poistaTagi(String tagi);
 
-    List<Tagi> getTagit();
+    List<String> getTagit();
 }
