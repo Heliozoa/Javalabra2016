@@ -25,6 +25,6 @@ public enum Arvosana {
 
     @Override
     public String toString() {
-        return arvosana + " (" + kuvaus + ")";
+        return arvosana + " - " + kuvaus;
     }
 }

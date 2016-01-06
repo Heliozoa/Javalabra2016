@@ -6,6 +6,8 @@
 package oma.lukulista.logiikka;
 
 import java.util.List;
+import oma.lukulista.domain.Arvosana;
+import oma.lukulista.domain.Kategoria;
 import oma.lukulista.domain.tekija.Kirjailija;
 import oma.lukulista.domain.tekija.Tekija;
 import oma.lukulista.domain.teos.Kirja;
@@ -36,17 +38,22 @@ public class DefaultOhjain implements Ohjain {
         this.hakukone = new Hakukone();
         this.tallentaja = new Muistio();
     }
-    
+
     @Override
     public void lisaaUusiKirjaListalle(String kirjanNimi, String tekijanNimi) {
+        lisaaUusiKirjaListalle(kirjanNimi, tekijanNimi, Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
+    }
+
+    @Override
+    public void lisaaUusiKirjaListalle(String kirjanNimi, String tekijanNimi, Kategoria kategoria, Arvosana arvosana) {
         Teos teos = hakukone.haeTeosNimella(teosLista, kirjanNimi);
         Tekija tekija = haeKirjailijaTaiLuoUusi(tekijanNimi);
 
         if (teos == null || !teos.getTekija().equals(tekija)) {
-            luoUusiKirja(kirjanNimi, tekija);
+            luoUusiKirja(kirjanNimi, tekija, kategoria, arvosana);
         }
     }
-    
+
     @Override
     public Tekija haeKirjailijaTaiLuoUusi(String kirjailijanNimi) {
         Tekija t = hakukone.haeTekijaNimella(tekijaLista, kirjailijanNimi);
@@ -67,10 +74,14 @@ public class DefaultOhjain implements Ohjain {
         return tekijaLista;
     }
 
-    private void luoUusiKirja(String nimi, Tekija tekija) {
+    private void luoUusiKirja(String nimi, Tekija tekija, Kategoria kategoria, Arvosana arvosana) {
         Kirja uusi = new Kirja(nimi, tekija);
+        uusi.setKategoria(kategoria);
+        uusi.setArvosana(arvosana);
+
         tekija.lisaaTeos(uusi);
         teosLista.add(uusi);
+        tallenna();
     }
 
     private Kirjailija luoUusiKirjailija(String nimi) {
@@ -88,6 +99,8 @@ public class DefaultOhjain implements Ohjain {
         if (t.getTeokset().isEmpty()) {
             tekijaLista.remove(t);
         }
+
+        tallenna();
     }
 
     @Override

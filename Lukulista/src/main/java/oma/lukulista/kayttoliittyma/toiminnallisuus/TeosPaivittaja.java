@@ -8,6 +8,7 @@ package oma.lukulista.kayttoliittyma.toiminnallisuus;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import oma.lukulista.domain.Arvosana;
+import oma.lukulista.domain.Kategoria;
 import oma.lukulista.domain.teos.Teos;
 import oma.lukulista.kayttoliittyma.paneelit.ListaPaneeli;
 import oma.lukulista.kayttoliittyma.paneelit.TietoPaneeli;
@@ -45,7 +46,7 @@ public class TeosPaivittaja implements ActionListener {
 
         t.setNimi(tiedot.getNimiField().getText());
         t.setTekija(ohjain.haeKirjailijaTaiLuoUusi(tiedot.getTekijaField().getText()));
-        t.setKategoria(tiedot.getKategoriaField().getText());
+        t.setKategoria((Kategoria) tiedot.getKategoriat().getSelectedItem());
         t.setArvosana((Arvosana) tiedot.getArvosanat().getSelectedItem());
 
         lista.paivita();

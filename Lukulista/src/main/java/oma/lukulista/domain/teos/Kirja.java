@@ -9,20 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 import oma.lukulista.domain.Arvosana;
 import java.util.Objects;
+import oma.lukulista.domain.Kategoria;
 import oma.lukulista.domain.tekija.Tekija;
 
 public class Kirja implements Teos {
 
     String nimi;
     Tekija tekija;
-    String kategoria;
+    Kategoria kategoria;
     List<String> tagit;
     Arvosana arvosana;
 
     public Kirja(String nimi, Tekija tekija) {
         this.nimi = nimi;
         this.tekija = tekija;
-        kategoria = "";
+        kategoria = Kategoria.TYHJA;
         tagit = new ArrayList<>();
         arvosana = Arvosana.EI_ARVOSTELTU;
     }
@@ -48,12 +49,12 @@ public class Kirja implements Teos {
     }
 
     @Override
-    public void setKategoria(String kategoria) {
+    public void setKategoria(Kategoria kategoria) {
         this.kategoria = kategoria;
     }
 
     @Override
-    public String getKategoria() {
+    public Kategoria getKategoria() {
         return kategoria;
     }
 

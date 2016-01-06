@@ -6,17 +6,17 @@
 package oma.lukulista.kayttoliittyma.komponentit;
 
 import javax.swing.JComboBox;
-import oma.lukulista.domain.Arvosana;
+import oma.lukulista.domain.Kategoria;
 
 /**
- * Drop-down lista joka sisältää kaikki eri arvosanat.
+ *
+ * @author sasami-san
  */
-public class ArvosanaComboBox extends JComboBox {
+public class KategoriaComboBox extends JComboBox {
 
-    public ArvosanaComboBox() {
-        for (Arvosana a : Arvosana.values()) {
-            addItem(a);
+    public KategoriaComboBox() {
+        for (Kategoria k : Kategoria.values()) {
+            addItem(k);
         }
     }
-
 }

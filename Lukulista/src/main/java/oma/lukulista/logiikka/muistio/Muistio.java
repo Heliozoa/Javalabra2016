@@ -5,6 +5,7 @@
  */
 package oma.lukulista.logiikka.muistio;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -34,11 +35,14 @@ public class Muistio {
      */
     public void tallenna(List<Teos> teokset) {
         try {
-            try (FileOutputStream tallennusTiedosto = new FileOutputStream(tiedostoPolku); ObjectOutputStream tallentaja = new ObjectOutputStream(tallennusTiedosto)) {
+            File tiedosto = new File(tiedostoPolku);
+            tiedosto.createNewFile();
 
-                tallentaja.writeObject(teokset);
+            FileOutputStream tallennusTiedosto = new FileOutputStream(tiedosto);
+            ObjectOutputStream tallentaja = new ObjectOutputStream(tallennusTiedosto);
 
-            }
+            tallentaja.writeObject(teokset);
+
         } catch (IOException ex) {
             Logger.getLogger(Muistio.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -53,15 +57,22 @@ public class Muistio {
      */
     public List<Teos> lataa() {
         try {
-            try (FileInputStream latausTiedosto = new FileInputStream(tiedostoPolku); ObjectInputStream lataaja = new ObjectInputStream(latausTiedosto)) {
+            File tiedosto = new File(tiedostoPolku);
+            tiedosto.createNewFile();
+
+            FileInputStream latausTiedosto = new FileInputStream(tiedosto);
+
+            if (latausTiedosto.available() > 0) {
+
+                ObjectInputStream lataaja = new ObjectInputStream(latausTiedosto);
 
                 Object o = lataaja.readObject();
 
                 if (o != null) {
                     return (List<Teos>) o;
                 }
-
             }
+
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(Muistio.class.getName()).log(Level.SEVERE, null, ex);
         }

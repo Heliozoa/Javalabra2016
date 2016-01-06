@@ -6,6 +6,8 @@
 package oma.lukulista.logiikka;
 
 import java.util.List;
+import oma.lukulista.domain.Arvosana;
+import oma.lukulista.domain.Kategoria;
 import oma.lukulista.domain.tekija.Tekija;
 import oma.lukulista.domain.teos.Teos;
 
@@ -14,6 +16,11 @@ import oma.lukulista.domain.teos.Teos;
  * joka hoitaa varsinaiset toiminnat.
  */
 public interface Ohjain {
+
+    /**
+     * @see lisaaUusiKirjaListalle(String, String, Kategoria, Arvosana)
+     */
+    public void lisaaUusiKirjaListalle(String kirjanNimi, String tekijanNimi);
 
     /**
      *
@@ -25,9 +32,10 @@ public interface Ohjain {
      *
      * @param kirjanNimi Lisättävän kirjan nimi
      * @param tekijanNimi Lisättävän kirjan tekijän nimi
+     * @param kategoria Lisättävän kategoria.
+     * @param arvosana Lisättävän arvosana.
      */
-    public void lisaaUusiKirjaListalle(String kirjanNimi, String tekijanNimi);
-
+    public void lisaaUusiKirjaListalle(String kirjanNimi, String tekijanNimi, Kategoria kategoria, Arvosana arvosana);
     /**
      * Etsii nimen perusteella kirjailijaa. Jos kyseistä kirjailijaa ei löydy,
      * niin metodi luo uuden.
@@ -59,4 +67,5 @@ public interface Ohjain {
      * @param poistettava Poistettava teos.
      */
     public void poistaTeosListalta(Teos poistettava);
+
 }
