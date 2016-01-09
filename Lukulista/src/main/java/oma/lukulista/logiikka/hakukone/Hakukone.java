@@ -5,6 +5,7 @@
  */
 package oma.lukulista.logiikka.hakukone;
 
+import java.util.ArrayList;
 import java.util.List;
 import oma.lukulista.domain.Nimellinen;
 import oma.lukulista.domain.tekija.Tekija;
@@ -30,27 +31,46 @@ public class Hakukone {
     }
 
     /**
-     * Hakee listalta teoksen, jonka nimi on sama kuin hakusana. Isoilla ja
+     * Hakee listalta teokset, joiden nimi on sama kuin hakusana. Isoilla ja
      * pienillä kirjaimilla ei ole merkitystä.
      *
      * @param lista Lista, jolta teoksia etsitään.
      * @param hakusana Hakusana, johon listalla olevien teosten nimeä verrataan.
-     * @return Haluttu teos jos sellainen löytyy, tai null jos sellaista ei
-     * löydy.
+     * @return Löydetyt teokset, tai null jos sellaisia ei löydy.
      */
-    public Teos haeTeosNimella(List<Teos> lista, String hakusana) {
-        return (Teos) haeNimella(lista, hakusana);
+    public List<Teos> haeTeoksetNimella(List<Teos> lista, String hakusana) {
+        List<Teos> teokset = new ArrayList<>();
+
+        List<Nimellinen> tulokset = haeMontaNimella(lista, hakusana);
+
+        for (Nimellinen n : tulokset) {
+            teokset.add((Teos) n);
+        }
+
+        return teokset;
     }
 
     private Nimellinen haeNimella(List<? extends Nimellinen> lista, String hakusana) {
 
+        List<Nimellinen> tulokset = haeMontaNimella(lista, hakusana);
+
+        if (tulokset.isEmpty()) {
+            return null;
+        } else {
+            return tulokset.get(0);
+        }
+
+    }
+
+    private List<Nimellinen> haeMontaNimella(List<? extends Nimellinen> lista, String hakusana) {
+        List<Nimellinen> tulokset = new ArrayList<>();
+
         for (Nimellinen n : lista) {
             if (n.getNimi().equalsIgnoreCase(hakusana)) {
-                return n;
+                tulokset.add(n);
             }
         }
 
-        return null;
-
+        return tulokset;
     }
 }

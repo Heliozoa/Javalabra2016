@@ -45,18 +45,20 @@ public class DefaultOhjain implements Ohjain {
     }
 
     /**
-     * !!WIP!! Ei toimi oikein erityistilanteessa jossa on useampi samanniminen
-     * kirja. Metodi tarkistaa vain ensimmäisen löydetyn kirjan ja vertaa
-     * lisättävää siihen.
+     * Lisää uuden kirjan listalle. Tarkistaa ensin, onko jo olemassa kirja jolla on sama nimi ja sama tekijä.
      */
     @Override
     public void lisaaUusiKirjaListalle(String kirjanNimi, String tekijanNimi, Kategoria kategoria, Arvosana arvosana) {
-        Teos teos = hakukone.haeTeosNimella(teosLista, kirjanNimi);
+        List<Teos> teokset = hakukone.haeTeoksetNimella(teosLista, kirjanNimi);
         Tekija tekija = haeKirjailijaTaiLuoUusi(tekijanNimi);
 
-        if (teos == null || !teos.getTekija().equals(tekija)) {
-            luoUusiKirja(kirjanNimi, tekija, kategoria, arvosana);
+        for (Teos teos : teokset) {
+            if (teos.getTekija().equals(tekija)) {
+                return;
+            }
         }
+
+        luoUusiKirja(kirjanNimi, tekija, kategoria, arvosana);
     }
 
     @Override
@@ -77,22 +79,6 @@ public class DefaultOhjain implements Ohjain {
     @Override
     public List<Tekija> getTekijaLista() {
         return tekijaLista;
-    }
-
-    private void luoUusiKirja(String nimi, Tekija tekija, Kategoria kategoria, Arvosana arvosana) {
-        Kirja uusi = new Kirja(nimi, tekija);
-        uusi.setKategoria(kategoria);
-        uusi.setArvosana(arvosana);
-
-        tekija.lisaaTeos(uusi);
-        teosLista.add(uusi);
-        tallenna();
-    }
-
-    private Kirjailija luoUusiKirjailija(String nimi) {
-        Kirjailija uusi = new Kirjailija(nimi);
-        tekijaLista.add(uusi);
-        return uusi;
     }
 
     @Override
@@ -126,5 +112,21 @@ public class DefaultOhjain implements Ohjain {
                 tekijaLista.add(t.getTekija());
             }
         }
+    }
+
+    private void luoUusiKirja(String nimi, Tekija tekija, Kategoria kategoria, Arvosana arvosana) {
+        Kirja uusi = new Kirja(nimi, tekija);
+        uusi.setKategoria(kategoria);
+        uusi.setArvosana(arvosana);
+
+        tekija.lisaaTeos(uusi);
+        teosLista.add(uusi);
+        tallenna();
+    }
+
+    private Kirjailija luoUusiKirjailija(String nimi) {
+        Kirjailija uusi = new Kirjailija(nimi);
+        tekijaLista.add(uusi);
+        return uusi;
     }
 }

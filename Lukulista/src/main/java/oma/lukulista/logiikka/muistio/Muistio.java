@@ -29,7 +29,7 @@ public class Muistio {
 
     /**
      * Tallentaa parametrina annetun teoslistan Muistion konstruktorissa
-     * annetussa polussa olevaan tiedostoon.
+     * kovakoodattuna olevassa tiedostopolussa olevaan tiedostoon.
      *
      * @param teokset Tallennettava teoslista.
      */

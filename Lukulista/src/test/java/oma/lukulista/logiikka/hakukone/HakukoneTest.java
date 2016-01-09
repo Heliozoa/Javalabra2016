@@ -7,7 +7,6 @@ package oma.lukulista.logiikka.hakukone;
 
 import java.util.ArrayList;
 import java.util.List;
-import oma.lukulista.domain.Nimellinen;
 import oma.lukulista.domain.tekija.Kirjailija;
 import oma.lukulista.domain.tekija.Tekija;
 import oma.lukulista.domain.teos.Kirja;
@@ -59,17 +58,24 @@ public class HakukoneTest {
     }
 
     @Test
-    public void haeTeosNimellaToimii() {
+    public void haeTeoksetNimellaToimii() {
         List<Teos> list = new ArrayList<>();
         Tekija asimov = new Kirjailija("Asimov, Isaac");
         Tekija muumi = new Kirjailija("Muumipappa");
 
         Teos saatio = new Kirja("Säätiö", asimov);
         Teos urotyot = new Kirja("Muumipapan urotyöt", muumi);
+        Teos valeUrotyot = new Kirja("Muumipapan urotyöt", asimov);
 
         list.add(saatio);
         list.add(urotyot);
+        list.add(valeUrotyot);
 
-        assertEquals(urotyot, hakukone.haeTeosNimella(list, "muumipapan urotyöt"));
+        List<Teos> odotetutTulokset = new ArrayList<>();
+
+        odotetutTulokset.add(urotyot);
+        odotetutTulokset.add(valeUrotyot);
+
+        assertEquals(odotetutTulokset, hakukone.haeTeoksetNimella(list, "muumipapan urotyöt"));
     }
 }

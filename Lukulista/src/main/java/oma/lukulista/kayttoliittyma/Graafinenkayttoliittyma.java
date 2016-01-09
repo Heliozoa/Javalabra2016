@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -86,16 +87,23 @@ public class Graafinenkayttoliittyma implements Kayttoliittyma {
         listaPaneeli = new ListaPaneeli(ohjain);
         lisaysPaneeli = new LisaysPaneeli(ohjain, listaPaneeli);
 
-        c.anchor = GridBagConstraints.FIRST_LINE_START;
-        c.fill = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(8, 8, 4, 4);
+        c.weightx = 0;
+        c.weighty = 0;
+        c.anchor = GridBagConstraints.NORTHWEST;
+        c.fill = GridBagConstraints.NONE;
 
         c.gridx = 0;
         c.gridy = 0;
         vasen.add(lisaysPaneeli, c);
 
+        c.insets = new Insets(0, 8, 8, 4);
+        c.weightx = 1.0;
+        c.weighty = 1.0;
+        c.anchor = GridBagConstraints.PAGE_END;
+        c.fill = GridBagConstraints.BOTH;
+
         c.gridy = 1;
-        c.ipady = 200;
-        c.ipadx = 300;
         vasen.add(listaPaneeli, c);
 
         return vasen;

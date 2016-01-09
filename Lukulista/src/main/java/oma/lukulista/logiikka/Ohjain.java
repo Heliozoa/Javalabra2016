@@ -49,10 +49,6 @@ public interface Ohjain {
      */
     public Tekija haeKirjailijaTaiLuoUusi(String kirjailijanNimi);
 
-    public List<Teos> getTeosLista();
-
-    public List<Tekija> getTekijaLista();
-
     /**
      * Tallentaa teoslistan tiedostoon Muistion avulla.
      */
@@ -70,5 +66,9 @@ public interface Ohjain {
      * @param poistettava Poistettava teos.
      */
     public void poistaTeosListalta(Teos poistettava);
+
+    public List<Teos> getTeosLista();
+
+    public List<Tekija> getTekijaLista();
 
 }
