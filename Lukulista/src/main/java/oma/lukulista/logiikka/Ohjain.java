@@ -18,7 +18,9 @@ import oma.lukulista.domain.teos.Teos;
 public interface Ohjain {
 
     /**
-     * @see lisaaUusiKirjaListalle(String, String, Kategoria, Arvosana)
+     * @param kirjanNimi Lisättävän kirjan nimi.
+     * @param tekijanNimi Kirjan tekijän nimi.
+     * @see #lisaaUusiKirjaListalle(java.lang.String, java.lang.String, oma.lukulista.domain.Kategoria, oma.lukulista.domain.Arvosana)
      */
     public void lisaaUusiKirjaListalle(String kirjanNimi, String tekijanNimi);
 
@@ -36,6 +38,7 @@ public interface Ohjain {
      * @param arvosana Lisättävän arvosana.
      */
     public void lisaaUusiKirjaListalle(String kirjanNimi, String tekijanNimi, Kategoria kategoria, Arvosana arvosana);
+
     /**
      * Etsii nimen perusteella kirjailijaa. Jos kyseistä kirjailijaa ei löydy,
      * niin metodi luo uuden.

@@ -45,8 +45,8 @@ public class TietoPaneeli extends JPanel {
      *
      * @param ohjain Ohjain välitetään kuuntelijoille jotka päivittävät sen
      * avulla Teos-oliot.
-     * @see NimiMuutosKuuntelija
-     * @see TekijaMuutosKuuntelija
+     * @param lista Lista välitetään kuuntelijoille jotka päivittävät sen avulla
+     * listan.
      */
     public TietoPaneeli(Ohjain ohjain, ListaPaneeli lista) {
         super(new GridLayout(0, 2));

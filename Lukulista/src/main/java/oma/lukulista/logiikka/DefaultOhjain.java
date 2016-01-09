@@ -23,7 +23,7 @@ public class DefaultOhjain implements Ohjain {
     private List<Teos> teosLista;
     private List<Tekija> tekijaLista;
     private Hakukone hakukone;
-    private Muistio tallentaja;
+    private Muistio muistio;
 
     /**
      *
@@ -36,7 +36,7 @@ public class DefaultOhjain implements Ohjain {
         this.teosLista = teosLista;
         this.tekijaLista = tekijaLista;
         this.hakukone = new Hakukone();
-        this.tallentaja = new Muistio();
+        this.muistio = new Muistio();
     }
 
     @Override
@@ -44,6 +44,11 @@ public class DefaultOhjain implements Ohjain {
         lisaaUusiKirjaListalle(kirjanNimi, tekijanNimi, Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
     }
 
+    /**
+     * !!WIP!! Ei toimi oikein erityistilanteessa jossa on useampi samanniminen
+     * kirja. Metodi tarkistaa vain ensimmäisen löydetyn kirjan ja vertaa
+     * lisättävää siihen.
+     */
     @Override
     public void lisaaUusiKirjaListalle(String kirjanNimi, String tekijanNimi, Kategoria kategoria, Arvosana arvosana) {
         Teos teos = hakukone.haeTeosNimella(teosLista, kirjanNimi);
@@ -105,12 +110,12 @@ public class DefaultOhjain implements Ohjain {
 
     @Override
     public void tallenna() {
-        tallentaja.tallenna(teosLista);
+        muistio.tallenna(teosLista);
     }
 
     @Override
     public void lataa() {
-        List<Teos> lista = tallentaja.lataa();
+        List<Teos> lista = muistio.lataa();
 
         if (lista != null) {
             teosLista = lista;

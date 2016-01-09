@@ -9,8 +9,7 @@ import javax.swing.JComboBox;
 import oma.lukulista.domain.Kategoria;
 
 /**
- *
- * @author sasami-san
+ * Drop-down lista joka sisältää kaikki eri kategoriat.
  */
 public class KategoriaComboBox extends JComboBox {
 

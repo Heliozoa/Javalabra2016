@@ -135,5 +135,18 @@ public class DefaultOhjainTest {
         Tekija uusi = ohjain.haeKirjailijaTaiLuoUusi("Muumipappa");
         assertSame(uusi, ohjain.haeKirjailijaTaiLuoUusi("Muumipappa"));
     }
+    
+    @Test
+    public void teoksenPoistoOnnistuu(){
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
+        ohjain.poistaTeosListalta(new Kirja("Säätiö", new Kirjailija("Asimov, Isaac")));
+        
+        assertTrue(ohjain.getTeosLista().isEmpty());
+    }
+    
+    @Test
+    public void olemattomanTeoksenPoistoEiAieheutaOngelmia(){
+        ohjain.poistaTeosListalta(new Kirja("Säätiö", new Kirjailija("Asimov, Isaac")));
+    }
 
 }

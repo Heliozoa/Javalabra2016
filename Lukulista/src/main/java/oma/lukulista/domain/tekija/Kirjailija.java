@@ -7,14 +7,12 @@ package oma.lukulista.domain.tekija;
 
 import java.util.ArrayList;
 import java.util.List;
-import oma.lukulista.domain.Arvosana;
 import oma.lukulista.domain.teos.Teos;
 
 public class Kirjailija implements Tekija {
 
     private String nimi;
     private List<Teos> teokset;
-    private Arvosana arvosana;
 
     public Kirjailija(String nimi) {
         this.nimi = nimi;
@@ -44,16 +42,6 @@ public class Kirjailija implements Tekija {
     @Override
     public List<Teos> getTeokset() {
         return teokset;
-    }
-
-    @Override
-    public void setArvosana(Arvosana arvosana) {
-        this.arvosana = arvosana;
-    }
-
-    @Override
-    public Arvosana getArvosana() {
-        return arvosana;
     }
 
     @Override

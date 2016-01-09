@@ -22,6 +22,7 @@ public class LisaysPaneeli extends JPanel {
 
     private Ohjain ohjain;
     private ListaPaneeli lista;
+    private TeosLisaaja teosLisaaja;
 
     /**
      * Luo tarvittavat komponentit.
@@ -30,7 +31,7 @@ public class LisaysPaneeli extends JPanel {
      * @param listaPaneeli Käyttöliittymän ListaPaneeli joka annetaan
      * TeosLisaajalle parametrina, jotta se pystyy päivittämään listaa lisäyksen
      * jälkeen.
-     * @see TeosLisaaja
+     * @see #teosLisaaja
      */
     public LisaysPaneeli(Ohjain ohjain, ListaPaneeli listaPaneeli) {
         super(new GridLayout(0, 2));
@@ -52,7 +53,7 @@ public class LisaysPaneeli extends JPanel {
         ArvosanaComboBox arvosanat = new ArvosanaComboBox();
 
         JButton lisaysButton = new JButton("Lisää");
-        TeosLisaaja teosLisaaja = new TeosLisaaja(ohjain, nimiField, tekijaField, kategoriat, arvosanat, lista);
+        teosLisaaja = new TeosLisaaja(ohjain, nimiField, tekijaField, kategoriat, arvosanat, lista);
         lisaysButton.addActionListener(teosLisaaja);
 
         add(nimiLabel);

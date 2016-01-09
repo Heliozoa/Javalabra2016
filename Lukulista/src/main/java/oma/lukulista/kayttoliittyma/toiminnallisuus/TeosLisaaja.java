@@ -46,7 +46,8 @@ public class TeosLisaaja implements ActionListener {
 
     /**
      * Luodaan uusi teos ja päivitetään graafinen lista. Jos nimiField tai
-     * tekijaField ovat tyhjiä, ei tehdä mitään. Tallentaa teoslistan tiedostoon.
+     * tekijaField ovat tyhjiä, ei tehdä mitään. Päivittää listan ja tallentaa
+     * teoslistan tiedostoon.
      *
      * @param ae
      */
@@ -56,7 +57,7 @@ public class TeosLisaaja implements ActionListener {
         String tekijanNimi = tekijaField.getText();
         Kategoria kategoria = (Kategoria) kategoriat.getSelectedItem();
         Arvosana arvosana = (Arvosana) arvosanat.getSelectedItem();
-        
+
         if (teoksenNimi.equals("") || tekijanNimi.equals("")) {
             return;
         }
@@ -66,7 +67,7 @@ public class TeosLisaaja implements ActionListener {
         tekijaField.setText("");
         kategoriat.setSelectedIndex(0);
         arvosanat.setSelectedIndex(0);
-        
+
         lista.paivita();
         ohjain.tallenna();
     }

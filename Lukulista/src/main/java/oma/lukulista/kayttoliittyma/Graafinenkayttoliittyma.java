@@ -48,9 +48,9 @@ public class Graafinenkayttoliittyma implements Kayttoliittyma {
      * TietoPaneelin ListaPaneelissa valitun teoksen tietojen näyttämistä ja
      * muokkaamista varten.
      *
-     * @see LisaysPaneeli
-     * @see ListaPaneeli
-     * @see TietoPaneeli
+     * @see #lisaysPaneeli
+     * @see #listaPaneeli
+     * @see #tietoPaneeli
      */
     @Override
     public void run() {

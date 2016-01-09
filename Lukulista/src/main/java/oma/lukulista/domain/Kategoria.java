@@ -6,8 +6,7 @@
 package oma.lukulista.domain;
 
 /**
- *
- * @author sasami-san
+ * Teoksen lukutilanne.
  */
 public enum Kategoria {
     TYHJA("Ei kategoriaa"), BACKLOG("Backlog"), JATETTY_KESKEN("Jätetty kesken"), KESKEN("Kesken"), LUETTU("Luettu");
@@ -17,9 +16,9 @@ public enum Kategoria {
     Kategoria(String kuvaus) {
         this.kuvaus = kuvaus;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return kuvaus;
     }
 }

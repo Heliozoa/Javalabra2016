@@ -7,14 +7,13 @@ package oma.lukulista.domain.tekija;
 
 import java.io.Serializable;
 import java.util.List;
-import oma.lukulista.domain.Arvosteltava;
 import oma.lukulista.domain.Nimellinen;
 import oma.lukulista.domain.teos.Teos;
 
 /**
  * Sisältää tekijän attribuutit sekä listan teoksista
  */
-public interface Tekija extends Nimellinen, Arvosteltava, Serializable {
+public interface Tekija extends Nimellinen, Serializable {
 
     void lisaaTeos(Teos teos);
 
