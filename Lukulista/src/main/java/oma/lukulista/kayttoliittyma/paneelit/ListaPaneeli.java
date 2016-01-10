@@ -52,7 +52,7 @@ public class ListaPaneeli extends JPanel {
         alustaLista();
         paivita();
 
-        c.insets = new Insets(0, 0, 4, 4);
+        c.insets = new Insets(0, 0, 3, 3);
         c.fill = GridBagConstraints.BOTH;
         c.anchor = GridBagConstraints.NORTHWEST;
         c.weighty = 0;
@@ -104,7 +104,7 @@ public class ListaPaneeli extends JPanel {
         c.gridx++;
         add(filtteriLabel, c);
 
-        c.insets = new Insets(0, 0, 4, 0);
+        c.insets = new Insets(0, 0, 3, 0);
         c.gridx++;
         add(filtteriField, c);
     }

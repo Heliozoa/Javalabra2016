@@ -36,13 +36,19 @@ public class TeosPaivittaja implements ActionListener {
     }
 
     /**
-     * Muutetaan valitun teoksen kaikki tiedot vastaamaan uusia tietoja. Tallentaa teoslistan tiedostoon.
+     * Muutetaan valitun teoksen kaikki tiedot vastaamaan uusia tietoja.
+     * Tallentaa teoslistan tiedostoon.
      *
      * @param ae
-     */ 
-   @Override
+     */
+    @Override
     public void actionPerformed(ActionEvent ae) {
+        int valinta = lista.getTeosJList().getSelectedIndex();
         Teos t = tiedot.getNykyinenValinta();
+        
+        if(t == null){
+            return;
+        }
 
         t.setNimi(tiedot.getNimiField().getText());
         t.setTekija(ohjain.haeKirjailijaTaiLuoUusi(tiedot.getTekijaField().getText()));

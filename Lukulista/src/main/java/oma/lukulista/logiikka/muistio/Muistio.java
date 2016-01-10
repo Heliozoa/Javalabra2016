@@ -11,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.StreamCorruptedException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,9 +22,11 @@ import oma.lukulista.domain.teos.Teos;
  */
 public class Muistio {
 
+    private String kansioPolku;
     private String tiedostoPolku;
 
     public Muistio() {
+        this.kansioPolku = "tallennus/";
         this.tiedostoPolku = "tallennus/tallennus";
     }
 
@@ -37,6 +38,7 @@ public class Muistio {
      */
     public void tallennaTiedostoon(List<Teos> teosLista) {
         try {
+            new File(kansioPolku).mkdirs();
             File tiedosto = new File(tiedostoPolku);
             tiedosto.createNewFile();
 

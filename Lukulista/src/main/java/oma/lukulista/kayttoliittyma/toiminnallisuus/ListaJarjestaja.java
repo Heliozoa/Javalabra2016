@@ -13,8 +13,7 @@ import oma.lukulista.kayttoliittyma.paneelit.ListaPaneeli;
 import oma.lukulista.logiikka.Ohjain;
 
 /**
- * Muuttaa listan järjestystä.
- *
+ * Muuttaa listan järjestystä JarjestysComboBox:in sisällön mukaisesti.
  */
 public class ListaJarjestaja implements ActionListener {
 
@@ -26,7 +25,7 @@ public class ListaJarjestaja implements ActionListener {
      *
      * @param ohjain Ohjain hoitaa järjestämisen.
      * @param listaPaneeli ListaPaneeli tarvitaan sen päivitystä varten.
-     * @param jarjestykset Tästä saadaan käyttöliittymässä valittu järjestys.
+     * @param jarjestykset Tästä saadaan valittu järjestys.
      */
     public ListaJarjestaja(Ohjain ohjain, ListaPaneeli listaPaneeli, JarjestysComboBox jarjestykset) {
         this.ohjain = ohjain;
@@ -34,6 +33,10 @@ public class ListaJarjestaja implements ActionListener {
         this.jarjestykset = jarjestykset;
     }
 
+    /**
+     * Asettaa ohjaimeen valitun järjestyksen ja päivittää listan.
+     * @param ae Tällä parametrilla ei tehdä mitään.
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
         Jarjestys jarjestys = (Jarjestys) jarjestykset.getSelectedItem();

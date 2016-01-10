@@ -9,8 +9,7 @@ import java.util.Comparator;
 import oma.lukulista.domain.teos.Teos;
 
 /**
- *
- * @author sasami-san
+ * Järjestää teokset nimen mukaan.
  */
 public class TeosNimiComparator implements Comparator<Teos> {
 
@@ -18,5 +17,4 @@ public class TeosNimiComparator implements Comparator<Teos> {
     public int compare(Teos t, Teos t1) {
         return t.getNimi().toUpperCase().compareTo(t1.getNimi().toUpperCase());
     }
-    
 }

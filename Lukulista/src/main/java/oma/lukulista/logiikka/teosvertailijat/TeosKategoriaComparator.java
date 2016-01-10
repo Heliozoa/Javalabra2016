@@ -9,8 +9,7 @@ import java.util.Comparator;
 import oma.lukulista.domain.teos.Teos;
 
 /**
- *
- * @author sasami-san
+ * Järjestää teokset kategorian mukaan.
  */
 public class TeosKategoriaComparator implements Comparator<Teos> {
 

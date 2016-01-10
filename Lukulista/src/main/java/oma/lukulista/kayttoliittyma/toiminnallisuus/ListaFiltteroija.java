@@ -14,8 +14,8 @@ import oma.lukulista.kayttoliittyma.paneelit.ListaPaneeli;
 import oma.lukulista.logiikka.Ohjain;
 
 /**
- * Filtteröi listaa sitä mukaa, kun parametrin filtteriField-kenttän sisällössä tapahtuu
- * muutoksia.
+ * Filtteröi listaa automaattisesti sitä mukaa, kun olioon johon
+ * ListaFiltteröijä on kiinnitetty sisällössä tapahtuu muutoksia.
  */
 public class ListaFiltteroija implements DocumentListener {
 
@@ -24,10 +24,10 @@ public class ListaFiltteroija implements DocumentListener {
     private JTextField filtteriField;
 
     /**
-     *
      * @param ohjain Ohjain hoitaa filtteröinnin logiikan.
      * @param listaPaneeli ListaPaneelia tarvitsee listan päivittämiseen.
-     * @param filtteriField Tekstikentästä saadaan filtteri.
+     * @param filtteriField Tekstikenttä, johon ListaFiltteröijä on kiinnitetty.
+     * Tästä saadaan filtteri.
      */
     public ListaFiltteroija(Ohjain ohjain, ListaPaneeli listaPaneeli, JTextField filtteriField) {
         this.ohjain = ohjain;
@@ -35,16 +35,29 @@ public class ListaFiltteroija implements DocumentListener {
         this.filtteriField = filtteriField;
     }
 
+    /**
+     * @see #changedUpdate(javax.swing.event.DocumentEvent)
+     * @param de Tällä parametrilla ei tehdä mitään.
+     */
     @Override
     public void insertUpdate(DocumentEvent de) {
         filtteroiLista();
     }
 
+    /**
+     * @see #changedUpdate(javax.swing.event.DocumentEvent)
+     * @param de Tällä parametrilla ei tehdä mitään.
+     */
     @Override
     public void removeUpdate(DocumentEvent de) {
         filtteroiLista();
     }
 
+    /**
+     * Asettaa ohjaimeen filtterin ja päivittää listan.
+     *
+     * @param de Tällä parametrilla ei tehdä mitään.
+     */
     @Override
     public void changedUpdate(DocumentEvent de) {
         filtteroiLista();

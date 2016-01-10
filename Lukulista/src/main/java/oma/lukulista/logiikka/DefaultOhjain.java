@@ -74,6 +74,10 @@ public class DefaultOhjain implements Ohjain {
 
     @Override
     public void poistaTeosListalta(Teos poistettava) {
+        if(poistettava == null){
+            return;
+        }
+        
         teosLista.remove(poistettava);
 
         Tekija t = poistettava.getTekija();
@@ -129,33 +133,9 @@ public class DefaultOhjain implements Ohjain {
 
     @Override
     public List<Teos> getFiltteroityJaJarjestettyLista() {
+        jarjestaLista();
         filtteroiLista();
-        jarjestaListat();
         return filtteroityTeosLista;
-    }
-
-    private void jarjestaListat() {
-        switch (jarjestys) {
-            case NIMI:
-                Collections.sort(teosLista, new TeosNimiComparator());
-                Collections.sort(filtteroityTeosLista, new TeosNimiComparator());
-                break;
-
-            case TEKIJAN_NIMI:
-                Collections.sort(teosLista, new TeosTekijanNimiComparator());
-                Collections.sort(filtteroityTeosLista, new TeosTekijanNimiComparator());
-                break;
-
-            case ARVOSANA:
-                Collections.sort(teosLista, new TeosArvosanaComparator());
-                Collections.sort(filtteroityTeosLista, new TeosArvosanaComparator());
-                break;
-
-            case KATEGORIA:
-                Collections.sort(teosLista, new TeosKategoriaComparator());
-                Collections.sort(filtteroityTeosLista, new TeosKategoriaComparator());
-                break;
-        }
     }
 
     private void luoUusiKirja(String nimi, Tekija tekija, Kategoria kategoria, Arvosana arvosana) {
@@ -174,6 +154,37 @@ public class DefaultOhjain implements Ohjain {
         return uusi;
     }
 
+    private boolean teosOnJoOlemassa(String kirjanNimi, Tekija tekija) {
+        List<Teos> samannimisetTeokset = hakukone.haeTeoksetNimella(teosLista, kirjanNimi);
+
+        for (Teos teos : samannimisetTeokset) {
+            if (teos.getTekija().equals(tekija)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void jarjestaLista() {
+        switch (jarjestys) {
+            case NIMI:
+                Collections.sort(teosLista, new TeosNimiComparator());
+                break;
+
+            case TEKIJAN_NIMI:
+                Collections.sort(teosLista, new TeosTekijanNimiComparator());
+                break;
+
+            case ARVOSANA:
+                Collections.sort(teosLista, new TeosArvosanaComparator());
+                break;
+
+            case KATEGORIA:
+                Collections.sort(teosLista, new TeosKategoriaComparator());
+                break;
+        }
+    }
+
     private void filtteroiLista() {
         filtteroityTeosLista.clear();
 
@@ -187,18 +198,6 @@ public class DefaultOhjain implements Ohjain {
                 filtteroityTeosLista.add(t);
             }
         }
-    }
-
-    private boolean teosOnJoOlemassa(String kirjanNimi, Tekija tekija) {
-        List<Teos> samannimisetTeokset = hakukone.haeTeoksetNimella(teosLista, kirjanNimi);
-
-        for (Teos teos : samannimisetTeokset) {
-            if (teos.getTekija().equals(tekija)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private boolean teosVastaaFiltteria(Teos t, String filtteri) {

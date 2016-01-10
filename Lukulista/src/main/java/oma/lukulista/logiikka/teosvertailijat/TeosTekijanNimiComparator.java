@@ -9,8 +9,7 @@ import java.util.Comparator;
 import oma.lukulista.domain.teos.Teos;
 
 /**
- *
- * @author sasami-san
+ * Järjestää teoksen tekijän nimen mukaan.
  */
 public class TeosTekijanNimiComparator implements Comparator<Teos> {
 

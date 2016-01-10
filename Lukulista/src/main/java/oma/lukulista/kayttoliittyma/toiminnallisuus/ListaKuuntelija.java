@@ -20,7 +20,6 @@ public class ListaKuuntelija implements ListSelectionListener {
     private TietoPaneeli tiedot;
 
     /**
-     *
      * @param tiedot TietoPaneeli jolla valitun teoksen tiedot halutaan näyttää.
      */
     public ListaKuuntelija(TietoPaneeli tiedot) {

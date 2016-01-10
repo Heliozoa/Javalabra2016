@@ -13,7 +13,7 @@ import oma.lukulista.domain.tekija.Tekija;
 import oma.lukulista.domain.teos.Teos;
 
 /**
- * Erottaa käyttöliittymän logiikasta, käyttöliittymä kutsuu ohjaimen metodeja
+ * Erottaa käyttöliittymän logiikasta. Käyttöliittymä kutsuu ohjaimen metodeja
  * joka hoitaa varsinaiset toiminnat.
  */
 public interface Ohjain {
@@ -26,8 +26,8 @@ public interface Ohjain {
      * olemassa kyseysellä tekijällä. Jos ei, luodaan uusi kirja joka lisätään
      * listalle.
      *
-     * @param kirjanNimi Lisättävän kirjan nimi
-     * @param tekijanNimi Lisättävän kirjan tekijän nimi
+     * @param kirjanNimi Lisättävän kirjan nimi.
+     * @param tekijanNimi Lisättävän kirjan tekijän nimi.
      * @param kategoria Lisättävän kategoria.
      * @param arvosana Lisättävän arvosana.
      */
@@ -37,9 +37,9 @@ public interface Ohjain {
      * Etsii nimen perusteella kirjailijaa. Jos kyseistä kirjailijaa ei löydy,
      * niin metodi luo uuden.
      *
-     * @param kirjailijanNimi Etsittävän kirjailijan nimi
+     * @param kirjailijanNimi Etsittävän kirjailijan nimi.
      * @return Palauttaa joko löytyneen kirjailijan tai vastaluodun uuden
-     * kirjailijan
+     * kirjailijan.
      */
     public Tekija haeKirjailijaTaiLuoUusi(String kirjailijanNimi);
 
@@ -62,23 +62,17 @@ public interface Ohjain {
     public void poistaTeosListalta(Teos poistettava);
 
     /**
-     * Filtteröi koko teoslistan parametrin filtterillä. Filtteröidyn listan saa
- getFiltteroityJaJarjestettyLista() -metodilla.
+     * Filtteröi ja järjestää teoslistan.
      *
-     * @param filtteri Jos teoksen tiedoista löytyy filtteri
+     * @return Filtteröity ja järjestetty teoslista.
      */
-    public void setFiltteri(String filtteri);
+    public List<Teos> getFiltteroityJaJarjestettyLista();
 
-    /**
-     * Järjestää teoslistan parametrin määrittämän järjestyksen mukaisesti.
-     *
-     * @param jarjestys Järjestys, johon lista laitetaan.
-     */
     public void setJarjestys(Jarjestys jarjestys);
 
-    public List<Teos> getTeosLista();
+    public void setFiltteri(String filtteri);
 
-    public List<Teos> getFiltteroityJaJarjestettyLista();
+    public List<Teos> getTeosLista();
 
     public List<Tekija> getTekijaLista();
 

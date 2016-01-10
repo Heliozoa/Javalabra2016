@@ -5,8 +5,6 @@ package oma.lukulista.domain.teos;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.util.ArrayList;
-import oma.lukulista.domain.teos.Kirja;
 import oma.lukulista.domain.tekija.Kirjailija;
 import oma.lukulista.domain.tekija.Tekija;
 import oma.lukulista.testiapurit.EqualsTest;
