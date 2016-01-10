@@ -11,4 +11,5 @@
 **30.12.** 3 tuntia graafisen käyttöliittymän jatkamiseen  
 **2.1.** 3 tuntia graafisen käyttöliittymän jatkamiseen, javadociin, refaktorointiin  
 **6.1.** 2,5 tuntia tiedostoon tallennuksen/latauksen toteutukseen, käyttöliittymän säätöön, koodin yksinkertaistamiseen  
-**6.1** 4 tuntia dokumentoinnin ja testien päivittämiseen, sekvenssikaavioihin
+**6.1** 4 tuntia dokumentoinnin ja testien päivittämiseen, sekvenssikaavioihin  
+**9.1.** 1 tunti käyttöliittymän säätöön  
