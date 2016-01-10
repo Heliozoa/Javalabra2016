@@ -41,10 +41,10 @@ public class TeosPoistaja implements ActionListener {
         if (valinta <= 0) {
             valinta = 1;
         }
-        
+
         lista.getTeosJList().setSelectedIndex(valinta - 1);
-        
-        if(lista.getTeosJList().getSelectedValue() == null){
+
+        if (lista.getTeosJList().getSelectedValue() == null) {
             tiedot.tyhjenna();
         }
     }

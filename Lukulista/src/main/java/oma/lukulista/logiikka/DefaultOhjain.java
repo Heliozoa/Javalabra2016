@@ -8,19 +8,15 @@ package oma.lukulista.logiikka;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import oma.lukulista.domain.enumit.Arvosana;
-import oma.lukulista.domain.enumit.Jarjestys;
-import oma.lukulista.domain.enumit.Kategoria;
+import oma.lukulista.domain.enumit.*;
 import oma.lukulista.domain.tekija.Kirjailija;
 import oma.lukulista.domain.tekija.Tekija;
 import oma.lukulista.domain.teos.Kirja;
 import oma.lukulista.domain.teos.Teos;
-import oma.lukulista.logiikka.hakukone.Hakukone;
+import oma.lukulista.logiikka.listakasittely.Filtteroija;
+import oma.lukulista.logiikka.listakasittely.Hakukone;
 import oma.lukulista.logiikka.muistio.Muistio;
-import oma.lukulista.logiikka.teosvertailijat.TeosArvosanaComparator;
-import oma.lukulista.logiikka.teosvertailijat.TeosKategoriaComparator;
-import oma.lukulista.logiikka.teosvertailijat.TeosNimiComparator;
-import oma.lukulista.logiikka.teosvertailijat.TeosTekijanNimiComparator;
+import oma.lukulista.logiikka.teosvertailijat.*;
 
 /**
  * Perustoteutus Ohjain-rajapinnasta.
@@ -32,6 +28,7 @@ public class DefaultOhjain implements Ohjain {
     private List<Tekija> tekijaLista;
     private Hakukone hakukone;
     private Muistio muistio;
+    private Filtteroija filtteroija;
 
     private Jarjestys jarjestys;
     private String filtteri;
@@ -49,9 +46,14 @@ public class DefaultOhjain implements Ohjain {
         this.tekijaLista = tekijaLista;
         this.hakukone = new Hakukone();
         this.muistio = new Muistio();
+        this.filtteroija = new Filtteroija();
 
         filtteri = "";
         jarjestys = Jarjestys.NIMI;
+    }
+
+    public DefaultOhjain() {
+        this(new ArrayList<Teos>(), new ArrayList<Tekija>());
     }
 
     @Override
@@ -74,13 +76,15 @@ public class DefaultOhjain implements Ohjain {
 
     @Override
     public void poistaTeosListalta(Teos poistettava) {
-        if(poistettava == null){
+        if (poistettava == null) {
             return;
         }
-        
-        teosLista.remove(poistettava);
 
         Tekija t = poistettava.getTekija();
+
+        teosLista.remove(poistettava);
+
+        t.poistaTeos(poistettava);
 
         if (t.getTeokset().isEmpty()) {
             tekijaLista.remove(t);
@@ -134,14 +138,12 @@ public class DefaultOhjain implements Ohjain {
     @Override
     public List<Teos> getFiltteroityJaJarjestettyLista() {
         jarjestaLista();
-        filtteroiLista();
+        filtteroija.filtteroiLista(filtteroityTeosLista, teosLista, filtteri);
         return filtteroityTeosLista;
     }
 
     private void luoUusiKirja(String nimi, Tekija tekija, Kategoria kategoria, Arvosana arvosana) {
-        Kirja uusi = new Kirja(nimi, tekija);
-        uusi.setKategoria(kategoria);
-        uusi.setArvosana(arvosana);
+        Kirja uusi = new Kirja(nimi, tekija, kategoria, arvosana);
 
         tekija.lisaaTeos(uusi);
         teosLista.add(uusi);
@@ -184,32 +186,4 @@ public class DefaultOhjain implements Ohjain {
                 break;
         }
     }
-
-    private void filtteroiLista() {
-        filtteroityTeosLista.clear();
-
-        if (filtteri.equals("")) {
-            filtteroityTeosLista.addAll(teosLista);
-            return;
-        }
-
-        for (Teos t : teosLista) {
-            if (teosVastaaFiltteria(t, filtteri)) {
-                filtteroityTeosLista.add(t);
-            }
-        }
-    }
-
-    private boolean teosVastaaFiltteria(Teos t, String filtteri) {
-        filtteri = filtteri.toUpperCase();
-        String nimi = t.getNimi().toUpperCase();
-        String tekijanNimi = t.getTekija().getNimi().toUpperCase();
-
-        if (nimi.contains(filtteri) || tekijanNimi.contains(filtteri)) {
-            return true;
-        }
-
-        return false;
-    }
-
 }

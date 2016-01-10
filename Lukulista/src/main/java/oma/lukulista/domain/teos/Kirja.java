@@ -5,8 +5,6 @@
  */
 package oma.lukulista.domain.teos;
 
-import java.util.ArrayList;
-import java.util.List;
 import oma.lukulista.domain.enumit.Arvosana;
 import java.util.Objects;
 import oma.lukulista.domain.enumit.Kategoria;
@@ -17,15 +15,17 @@ public class Kirja implements Teos {
     String nimi;
     Tekija tekija;
     Kategoria kategoria;
-    List<String> tagit;
     Arvosana arvosana;
 
     public Kirja(String nimi, Tekija tekija) {
+        this(nimi, tekija, Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
+    }
+
+    public Kirja(String nimi, Tekija tekija, Kategoria kategoria, Arvosana arvosana) {
         this.nimi = nimi;
         this.tekija = tekija;
-        kategoria = Kategoria.TYHJA;
-        tagit = new ArrayList<>();
-        arvosana = Arvosana.EI_ARVOSTELTU;
+        this.kategoria = kategoria;
+        this.arvosana = arvosana;
     }
 
     @Override

@@ -26,8 +26,8 @@ public class Muistio {
     private String tiedostoPolku;
 
     public Muistio() {
-        this.kansioPolku = "tallennus/";
-        this.tiedostoPolku = "tallennus/tallennus";
+        this.kansioPolku = "tallennus" + File.separator;
+        this.tiedostoPolku = "tallennus" + File.separator + "tallennus";
     }
 
     /**
@@ -38,7 +38,7 @@ public class Muistio {
      */
     public void tallennaTiedostoon(List<Teos> teosLista) {
         try {
-            new File(kansioPolku).mkdirs();
+            new File(kansioPolku).mkdir();
             File tiedosto = new File(tiedostoPolku);
             tiedosto.createNewFile();
 
@@ -58,7 +58,7 @@ public class Muistio {
      */
     public List<Teos> lataaTiedostosta() {
         try {
-            new File(kansioPolku).mkdirs();
+            new File(kansioPolku).mkdir();
             File tiedosto = new File(tiedostoPolku);
             tiedosto.createNewFile();
 
@@ -83,7 +83,7 @@ public class Muistio {
         if (latausTiedosto.available() > 0) {
 
             ObjectInputStream lataaja = new ObjectInputStream(latausTiedosto);
-            
+
             Object o = lataaja.readObject();
 
             if (o != null) {

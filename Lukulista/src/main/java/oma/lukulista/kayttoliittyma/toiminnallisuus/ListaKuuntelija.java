@@ -29,7 +29,7 @@ public class ListaKuuntelija implements ListSelectionListener {
     /**
      * Näyttää TietoPaneelissa valitun teoksen tiedot kun valinta muuttuu.
      *
-     * @param lse
+     * @param lse Tällä parametrilla ei tehdä mitään.
      */
     @Override
     public void valueChanged(ListSelectionEvent lse) {

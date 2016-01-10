@@ -49,7 +49,7 @@ public class TeosLisaaja implements ActionListener {
      * tekijaField ovat tyhjiä, ei tehdä mitään. Päivittää listan ja tallentaa
      * teoslistan tiedostoon.
      *
-     * @param ae
+     * @param ae Tällä parametrilla ei tehdä mitään.
      */
     @Override
     public void actionPerformed(ActionEvent ae) {

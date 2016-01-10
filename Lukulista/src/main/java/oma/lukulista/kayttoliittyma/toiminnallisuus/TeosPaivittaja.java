@@ -39,14 +39,14 @@ public class TeosPaivittaja implements ActionListener {
      * Muutetaan valitun teoksen kaikki tiedot vastaamaan uusia tietoja.
      * Tallentaa teoslistan tiedostoon.
      *
-     * @param ae
+     * @param ae Tällä parametrilla ei tehdä mitään.
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
         int valinta = lista.getTeosJList().getSelectedIndex();
         Teos t = tiedot.getNykyinenValinta();
-        
-        if(t == null){
+
+        if (t == null) {
             return;
         }
 

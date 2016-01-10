@@ -8,12 +8,13 @@ package oma.lukulista.logiikka;
 import java.util.ArrayList;
 import java.util.List;
 import oma.lukulista.domain.enumit.Arvosana;
+import oma.lukulista.domain.enumit.Jarjestys;
 import oma.lukulista.domain.enumit.Kategoria;
 import oma.lukulista.domain.tekija.Kirjailija;
 import oma.lukulista.domain.tekija.Tekija;
 import oma.lukulista.domain.teos.Kirja;
 import oma.lukulista.domain.teos.Teos;
-import oma.lukulista.logiikka.hakukone.Hakukone;
+import oma.lukulista.logiikka.listakasittely.Hakukone;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -137,18 +138,65 @@ public class DefaultOhjainTest {
         Tekija uusi = ohjain.haeKirjailijaTaiLuoUusi("Muumipappa");
         assertSame(uusi, ohjain.haeKirjailijaTaiLuoUusi("Muumipappa"));
     }
-    
+
     @Test
-    public void teoksenPoistoOnnistuu(){
+    public void teoksenPoistoOnnistuu() {
         ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
-        ohjain.poistaTeosListalta(new Kirja("Säätiö", new Kirjailija("Asimov, Isaac")));
-        
+        ohjain.poistaTeosListalta(new Kirja("Säätiö", ohjain.haeKirjailijaTaiLuoUusi("Asimov, Isaac")));
+
         assertTrue(ohjain.getTeosLista().isEmpty());
     }
-    
+
     @Test
-    public void olemattomanTeoksenPoistoEiAieheutaOngelmia(){
+    public void olemattomanTeoksenPoistoEiAieheutaOngelmia() {
         ohjain.poistaTeosListalta(new Kirja("Säätiö", new Kirjailija("Asimov, Isaac")));
+    }
+
+    @Test
+    public void tekijaJolleEiJaaYhtaanTeostaPoistonJalkeenPoistetaanMyos() {
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.HUONO);
+        ohjain.poistaTeosListalta(new Kirja("Säätiö", ohjain.haeKirjailijaTaiLuoUusi("Asimov, Isaac")));
+
+        assertTrue(ohjain.getTekijaLista().isEmpty());
+    }
+
+    @Test
+    public void tekijaJolleJaaTeoksiaPoistonJalkeenEiPoisteta() {
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.HUONO);
+        ohjain.lisaaUusiKirjaListalle("I, Robot", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.HUONO);
+        ohjain.poistaTeosListalta(new Kirja("Säätiö", ohjain.haeKirjailijaTaiLuoUusi("Asimov, Isaac")));
+
+        assertTrue(ohjain.getTekijaLista().size() == 1);
+    }
+
+    @Test
+    public void filtteroityListaLuodaanOikein() {
+        ohjain.lisaaUusiKirjaListalle("Muumipappa ja meri", "Jansson, Tove", Kategoria.TYHJA, Arvosana.HUONO);
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Muumipappa", Kategoria.TYHJA, Arvosana.HUONO);
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.HUONO);
+
+        ohjain.setFiltteri("muumi");
+
+        List<Teos> filtteroity = ohjain.getFiltteroityJaJarjestettyLista();
+
+        assertEquals("Muumipappa ja meri", filtteroity.get(0).getNimi());
+        assertEquals("Muumipappa", filtteroity.get(1).getTekija().getNimi());
+        assertEquals(2, filtteroity.size());
+    }
+
+    @Test
+    public void jarjestettyListaLuodaanOikeinAinakinArvosanalla() {
+        ohjain.lisaaUusiKirjaListalle("Muumipappa ja meri", "Jansson, Tove", Kategoria.TYHJA, Arvosana.OK);
+        ohjain.lisaaUusiKirjaListalle("Muistelmat", "Muumipappa", Kategoria.TYHJA, Arvosana.ERINOMAINEN);
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.HUONO);
+
+        ohjain.setJarjestys(Jarjestys.ARVOSANA);
+
+        List<Teos> jarjestetty = ohjain.getFiltteroityJaJarjestettyLista();
+
+        assertEquals("Muistelmat", jarjestetty.get(0).getNimi());
+        assertEquals("Muumipappa ja meri", jarjestetty.get(1).getNimi());
+        assertEquals("Säätiö", jarjestetty.get(2).getNimi());
     }
 
 }

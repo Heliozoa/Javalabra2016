@@ -5,6 +5,7 @@
  */
 package oma.lukulista.logiikka.hakukone;
 
+import oma.lukulista.logiikka.listakasittely.Hakukone;
 import java.util.ArrayList;
 import java.util.List;
 import oma.lukulista.domain.tekija.Kirjailija;

@@ -7,11 +7,15 @@ package oma.lukulista.main;
 
 import java.util.ArrayList;
 import java.util.List;
+import oma.lukulista.domain.enumit.Arvosana;
+import oma.lukulista.domain.enumit.Kategoria;
+import oma.lukulista.domain.tekija.Kirjailija;
 import oma.lukulista.kayttoliittyma.Graafinenkayttoliittyma;
 import oma.lukulista.kayttoliittyma.Kayttoliittyma;
 import oma.lukulista.logiikka.DefaultOhjain;
 import oma.lukulista.logiikka.Ohjain;
 import oma.lukulista.domain.tekija.Tekija;
+import oma.lukulista.domain.teos.Kirja;
 import oma.lukulista.domain.teos.Teos;
 
 /**

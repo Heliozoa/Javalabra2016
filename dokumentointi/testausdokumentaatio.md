@@ -13,3 +13,7 @@ Testasin muutenkin käyttöliittymää käsin yksinkertaisesti painelemalla kaik
 Huomasin myös, että jos poistettava teos on listan viimeinen, sen tiedot jää hölmösti näkymään tietopaneeliin, koska ohjelma ei löydä uutta tietuetta listasta, jonka tiedot se ottaisi näkyviin. Varsinainen ongelma se ei ollut, mutta korjasin sen joka tapauksessa.
 
 Jos olisin osannut, olisin halunnut testata koodin (epä)tehokkuutta. Aika moni asia tapahtuu koodissa listan kokonaan tyhjentämisen ja uudelleentäyttämisen kautta, joka kuulostaa siltä ettei se ole kovinkaan tehokasta. Tehokkuus ei kuitenkaan ollut arvostelukriteereissä oleellinen, joten keskityin muihin asioihin.
+
+Myöskään comparator-luokkia en testannut automaattisesti. Niiden toiminta ei ole ollenkaan monimutkaista (merkkijonojen ja numeroiden vertailua) ja testien kirjoittaminen niille osoittautui hieman työlääksi. Niiden toiminta tuskin tulee muuttumaan, jolloin niiden toiminnan näki helposti oikeaksi graafisen käyttöliittymän kautta.
+
+Joululabra-githubissa lukee, että polut ovat suhteessa jar-tiedoston sijaintiin joten en kiinnittänyt tähän osaan paljoa huomiota. Tällä hetkellä jar kuitenkin tallentaa listan sijaintiin, jossa konsoli on avattu eikä sijaintiin missä jar on niinkuin olisin halunnut. Tämän korjaaminen osoittautui yllättävän hankalaksi, joten se toimii edelleen niin.

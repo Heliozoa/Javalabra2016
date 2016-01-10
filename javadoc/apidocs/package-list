@@ -1,4 +1,5 @@
 oma.lukulista.domain
+oma.lukulista.domain.enumit
 oma.lukulista.domain.tekija
 oma.lukulista.domain.teos
 oma.lukulista.kayttoliittyma
@@ -6,6 +7,7 @@ oma.lukulista.kayttoliittyma.komponentit
 oma.lukulista.kayttoliittyma.paneelit
 oma.lukulista.kayttoliittyma.toiminnallisuus
 oma.lukulista.logiikka
-oma.lukulista.logiikka.hakukone
+oma.lukulista.logiikka.listakasittely
 oma.lukulista.logiikka.muistio
+oma.lukulista.logiikka.teosvertailijat
 oma.lukulista.main
