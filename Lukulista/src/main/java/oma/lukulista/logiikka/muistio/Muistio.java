@@ -58,6 +58,7 @@ public class Muistio {
      */
     public List<Teos> lataaTiedostosta() {
         try {
+            new File(kansioPolku).mkdirs();
             File tiedosto = new File(tiedostoPolku);
             tiedosto.createNewFile();
 

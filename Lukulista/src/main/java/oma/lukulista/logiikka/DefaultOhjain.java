@@ -5,6 +5,7 @@
  */
 package oma.lukulista.logiikka;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import oma.lukulista.domain.enumit.Arvosana;
@@ -44,7 +45,7 @@ public class DefaultOhjain implements Ohjain {
      */
     public DefaultOhjain(List<Teos> teosLista, List<Tekija> tekijaLista) {
         this.teosLista = teosLista;
-        this.filtteroityTeosLista = teosLista;
+        this.filtteroityTeosLista = new ArrayList<>();
         this.tekijaLista = tekijaLista;
         this.hakukone = new Hakukone();
         this.muistio = new Muistio();
@@ -56,7 +57,6 @@ public class DefaultOhjain implements Ohjain {
     @Override
     public void lisaaUusiKirjaListalle(String kirjanNimi, String tekijanNimi, Kategoria kategoria, Arvosana arvosana) {
         Tekija tekija = haeKirjailijaTaiLuoUusi(tekijanNimi);
-
         if (!teosOnJoOlemassa(kirjanNimi, tekija)) {
             luoUusiKirja(kirjanNimi, tekija, kategoria, arvosana);
         }

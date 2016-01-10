@@ -38,10 +38,15 @@ public class TeosPoistaja implements ActionListener {
         ohjain.poistaTeosListalta(tiedot.getNykyinenValinta());
         lista.paivita();
 
-        if (valinta < 0) {
+        if (valinta <= 0) {
             valinta = 1;
         }
+        
         lista.getTeosJList().setSelectedIndex(valinta - 1);
+        
+        if(lista.getTeosJList().getSelectedValue() == null){
+            tiedot.tyhjenna();
+        }
     }
 
 }

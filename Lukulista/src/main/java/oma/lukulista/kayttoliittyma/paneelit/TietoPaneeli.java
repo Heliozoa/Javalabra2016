@@ -96,6 +96,16 @@ public class TietoPaneeli extends JPanel {
         arvosanat.setSelectedItem(t.getArvosana());
     }
 
+    /**
+     * Resetoi tekstikentät ja comboboxit.
+     */
+    public void tyhjenna() {
+        nimiField.setText("");
+        tekijaField.setText("");
+        kategoriat.setSelectedIndex(0);
+        arvosanat.setSelectedIndex(0);
+    }
+
     public Teos getNykyinenValinta() {
         return nykyinenValinta;
     }
