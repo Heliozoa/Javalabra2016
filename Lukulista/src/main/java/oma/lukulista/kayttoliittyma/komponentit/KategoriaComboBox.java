@@ -6,7 +6,7 @@
 package oma.lukulista.kayttoliittyma.komponentit;
 
 import javax.swing.JComboBox;
-import oma.lukulista.domain.Kategoria;
+import oma.lukulista.domain.enumit.Kategoria;
 
 /**
  * Drop-down lista joka sisältää kaikki eri kategoriat.

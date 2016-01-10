@@ -5,6 +5,8 @@
  */
 package oma.lukulista.domain;
 
+import oma.lukulista.domain.enumit.Arvosana;
+
 /**
  * Arvosteltavalla luokalla on arvosana jota voi muuttaa.
  */

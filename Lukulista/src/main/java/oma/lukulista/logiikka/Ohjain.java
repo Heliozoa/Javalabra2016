@@ -6,9 +6,9 @@
 package oma.lukulista.logiikka;
 
 import java.util.List;
-import oma.lukulista.domain.Arvosana;
-import oma.lukulista.domain.Jarjestys;
-import oma.lukulista.domain.Kategoria;
+import oma.lukulista.domain.enumit.Arvosana;
+import oma.lukulista.domain.enumit.Jarjestys;
+import oma.lukulista.domain.enumit.Kategoria;
 import oma.lukulista.domain.tekija.Tekija;
 import oma.lukulista.domain.teos.Teos;
 

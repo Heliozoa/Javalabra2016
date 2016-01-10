@@ -7,9 +7,9 @@ package oma.lukulista.domain.teos;
 
 import java.util.ArrayList;
 import java.util.List;
-import oma.lukulista.domain.Arvosana;
+import oma.lukulista.domain.enumit.Arvosana;
 import java.util.Objects;
-import oma.lukulista.domain.Kategoria;
+import oma.lukulista.domain.enumit.Kategoria;
 import oma.lukulista.domain.tekija.Tekija;
 
 public class Kirja implements Teos {
@@ -56,21 +56,6 @@ public class Kirja implements Teos {
     @Override
     public Kategoria getKategoria() {
         return kategoria;
-    }
-
-    @Override
-    public void lisaaTagi(String tagi) {
-        tagit.add(tagi);
-    }
-
-    @Override
-    public void poistaTagi(String tagi) {
-        tagit.remove(tagi);
-    }
-
-    @Override
-    public List<String> getTagit() {
-        return tagit;
     }
 
     @Override

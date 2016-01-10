@@ -7,8 +7,8 @@ package oma.lukulista.kayttoliittyma.toiminnallisuus;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import oma.lukulista.domain.Arvosana;
-import oma.lukulista.domain.Kategoria;
+import oma.lukulista.domain.enumit.Arvosana;
+import oma.lukulista.domain.enumit.Kategoria;
 import oma.lukulista.domain.teos.Teos;
 import oma.lukulista.kayttoliittyma.paneelit.ListaPaneeli;
 import oma.lukulista.kayttoliittyma.paneelit.TietoPaneeli;

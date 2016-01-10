@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package oma.lukulista.domain;
+package oma.lukulista.domain.enumit;
 
 /**
  * Sisältää erilaiset järjestykset, joiden mukaan teoksia voi järjestää.
- * 
  */
 public enum Jarjestys {
     NIMI("Nimi"), TEKIJAN_NIMI("Tekijän nimi"), ARVOSANA("Arvosana"), KATEGORIA("Kategoria");

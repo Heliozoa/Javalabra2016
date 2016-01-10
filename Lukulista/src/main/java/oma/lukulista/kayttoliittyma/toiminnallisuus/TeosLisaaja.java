@@ -9,8 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
-import oma.lukulista.domain.Arvosana;
-import oma.lukulista.domain.Kategoria;
+import oma.lukulista.domain.enumit.Arvosana;
+import oma.lukulista.domain.enumit.Kategoria;
 import oma.lukulista.kayttoliittyma.paneelit.ListaPaneeli;
 import oma.lukulista.logiikka.Ohjain;
 

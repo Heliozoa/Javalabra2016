@@ -11,7 +11,7 @@ import oma.lukulista.domain.Nimellinen;
 import oma.lukulista.domain.teos.Teos;
 
 /**
- * Sisältää tekijän attribuutit sekä listan teoksista
+ * Sisältää tekijän attribuutit sekä listan teoksista.
  */
 public interface Tekija extends Nimellinen, Serializable {
 

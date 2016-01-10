@@ -7,8 +7,8 @@ package oma.lukulista.logiikka;
  */
 import java.util.ArrayList;
 import java.util.List;
-import oma.lukulista.domain.Arvosana;
-import oma.lukulista.domain.Kategoria;
+import oma.lukulista.domain.enumit.Arvosana;
+import oma.lukulista.domain.enumit.Kategoria;
 import oma.lukulista.domain.tekija.Kirjailija;
 import oma.lukulista.domain.tekija.Tekija;
 import oma.lukulista.domain.teos.Kirja;

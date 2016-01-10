@@ -7,7 +7,7 @@ package oma.lukulista.kayttoliittyma.toiminnallisuus;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import oma.lukulista.domain.Jarjestys;
+import oma.lukulista.domain.enumit.Jarjestys;
 import oma.lukulista.kayttoliittyma.komponentit.JarjestysComboBox;
 import oma.lukulista.kayttoliittyma.paneelit.ListaPaneeli;
 import oma.lukulista.logiikka.Ohjain;

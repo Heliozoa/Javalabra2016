@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package oma.lukulista.domain;
+package oma.lukulista.domain.enumit;
 
 /**
  * Arvosana asteikolla 1-5, missä 0 merkitsee vielä arvostelematonta.
