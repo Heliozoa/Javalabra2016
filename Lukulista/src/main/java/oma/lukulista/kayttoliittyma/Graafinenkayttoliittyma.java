@@ -55,7 +55,7 @@ public class Graafinenkayttoliittyma implements Kayttoliittyma {
      */
     @Override
     public void run() {
-        ohjain.lataa();
+        ohjain.lataaTiedostosta();
 
         frame = new JFrame("Lukulista");
         frame.setPreferredSize(new Dimension(800, 400));
@@ -69,14 +69,47 @@ public class Graafinenkayttoliittyma implements Kayttoliittyma {
     }
 
     private void luoKomponentit(Container container) {
-        GridLayout ylaLayout = new GridLayout(1, 2);
-        container.setLayout(ylaLayout);
+        container.setLayout(new GridBagLayout());
 
+        GridBagConstraints c = new GridBagConstraints();
+
+        /*
+         * Oikea paneeli tarvitsee vasemman paneelin komponentteja, joten on
+         * tärkeää, että vasen paneeli alustetaan ensin!
+         */
         JPanel vasen = alustaVasenPaneeli();
-        container.add(vasen);
-
         JPanel oikea = alustaOikeaPaneeli();
-        container.add(oikea);
+
+        c.gridx = 0;
+        c.gridy = 0;
+        lisaaVasenPaneeli(vasen, container, c);
+
+        c.gridx = 1;
+        lisaaOikeaPaneeli(oikea, container, c);
+    }
+
+    private void lisaaVasenPaneeli(JPanel vasen, Container container, GridBagConstraints c) {
+        c.ipadx = 0;
+        c.ipady = 0;
+        c.insets = new Insets(8, 8, 8, 3);
+        c.anchor = GridBagConstraints.NORTHWEST;
+        c.fill = GridBagConstraints.BOTH;
+        c.weightx = 1;
+        c.weighty = 1;
+
+        container.add(vasen, c);
+    }
+
+    private void lisaaOikeaPaneeli(JPanel oikea, Container container, GridBagConstraints c) {
+        c.ipadx = 40;
+        c.ipady = 30;
+        c.insets = new Insets(8, 3, 8, 8);
+        c.anchor = GridBagConstraints.CENTER;
+        c.fill = GridBagConstraints.NONE;
+        c.weightx = 0;
+        c.weighty = 0;
+
+        container.add(oikea, c);
     }
 
     private JPanel alustaVasenPaneeli() {
@@ -87,26 +120,36 @@ public class Graafinenkayttoliittyma implements Kayttoliittyma {
         listaPaneeli = new ListaPaneeli(ohjain);
         lisaysPaneeli = new LisaysPaneeli(ohjain, listaPaneeli);
 
-        c.insets = new Insets(8, 8, 4, 4);
-        c.weightx = 0;
-        c.weighty = 0;
-        c.anchor = GridBagConstraints.NORTHWEST;
-        c.fill = GridBagConstraints.NONE;
-
         c.gridx = 0;
         c.gridy = 0;
-        vasen.add(lisaysPaneeli, c);
-
-        c.insets = new Insets(0, 8, 8, 4);
-        c.weightx = 1.0;
-        c.weighty = 1.0;
-        c.anchor = GridBagConstraints.PAGE_END;
-        c.fill = GridBagConstraints.BOTH;
+        lisaaLisaysPaneeli(lisaysPaneeli, vasen, c);
 
         c.gridy = 1;
-        vasen.add(listaPaneeli, c);
+        lisaaListaPaneeli(listaPaneeli, vasen, c);
 
         return vasen;
+    }
+
+    private void lisaaLisaysPaneeli(LisaysPaneeli lisaysPaneeli, JPanel paneeli, GridBagConstraints c) {
+        c.ipadx = 60;
+        c.insets = new Insets(0, 0, 3, 0);
+        c.anchor = GridBagConstraints.NORTHWEST;
+        c.fill = GridBagConstraints.NONE;
+        c.weightx = 0;
+        c.weighty = 0;
+
+        paneeli.add(lisaysPaneeli, c);
+    }
+
+    private void lisaaListaPaneeli(ListaPaneeli listaPaneeli, JPanel paneeli, GridBagConstraints c) {
+        c.ipadx = 0;
+        c.insets = new Insets(3, 0, 0, 0);
+        c.anchor = GridBagConstraints.PAGE_END;
+        c.fill = GridBagConstraints.BOTH;
+        c.weightx = 1.0;
+        c.weighty = 1.0;
+
+        paneeli.add(listaPaneeli, c);
     }
 
     private JPanel alustaOikeaPaneeli() {

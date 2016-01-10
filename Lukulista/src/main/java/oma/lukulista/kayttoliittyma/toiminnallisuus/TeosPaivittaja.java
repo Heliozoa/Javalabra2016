@@ -50,7 +50,7 @@ public class TeosPaivittaja implements ActionListener {
         t.setArvosana((Arvosana) tiedot.getArvosanat().getSelectedItem());
 
         lista.paivita();
-        ohjain.tallenna();
+        ohjain.tallennaTiedostoon();
     }
 
 }

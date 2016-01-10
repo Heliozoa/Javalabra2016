@@ -69,7 +69,7 @@ public class TeosLisaaja implements ActionListener {
         arvosanat.setSelectedIndex(0);
 
         lista.paivita();
-        ohjain.tallenna();
+        ohjain.tallennaTiedostoon();
     }
 
 }

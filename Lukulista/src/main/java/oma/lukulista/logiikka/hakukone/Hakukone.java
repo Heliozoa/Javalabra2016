@@ -56,9 +56,9 @@ public class Hakukone {
 
         if (tulokset.isEmpty()) {
             return null;
-        } else {
-            return tulokset.get(0);
         }
+
+        return tulokset.get(0);
 
     }
 

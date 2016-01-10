@@ -11,13 +11,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.StreamCorruptedException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oma.lukulista.domain.teos.Teos;
 
 /**
- * Tallentaa teoslistan tiedostoon ja lataa ne siitä pääohjelman käyttöön.
+ * Tallentaa teoslistan tiedostoon ja lataaTiedostosta ne siitä pääohjelman
+ * käyttöön.
  */
 public class Muistio {
 
@@ -31,17 +33,14 @@ public class Muistio {
      * Tallentaa parametrina annetun teoslistan Muistion konstruktorissa
      * kovakoodattuna olevassa tiedostopolussa olevaan tiedostoon.
      *
-     * @param teokset Tallennettava teoslista.
+     * @param teosLista Tallennettava teoslista.
      */
-    public void tallenna(List<Teos> teokset) {
+    public void tallennaTiedostoon(List<Teos> teosLista) {
         try {
             File tiedosto = new File(tiedostoPolku);
             tiedosto.createNewFile();
 
-            FileOutputStream tallennusTiedosto = new FileOutputStream(tiedosto);
-            ObjectOutputStream tallentaja = new ObjectOutputStream(tallennusTiedosto);
-
-            tallentaja.writeObject(teokset);
+            kirjoitaTeoslistaTiedostoon(teosLista, tiedosto);
 
         } catch (IOException ex) {
             Logger.getLogger(Muistio.class.getName()).log(Level.SEVERE, null, ex);
@@ -55,26 +54,38 @@ public class Muistio {
      * @return Palauttaa ladatun teoslistan tai null, jos tiedostoon ei ole
      * tallennettu vielä mitään.
      */
-    public List<Teos> lataa() {
+    public List<Teos> lataaTiedostosta() {
         try {
             File tiedosto = new File(tiedostoPolku);
             tiedosto.createNewFile();
 
-            FileInputStream latausTiedosto = new FileInputStream(tiedosto);
-
-            if (latausTiedosto.available() > 0) {
-
-                ObjectInputStream lataaja = new ObjectInputStream(latausTiedosto);
-
-                Object o = lataaja.readObject();
-
-                if (o != null) {
-                    return (List<Teos>) o;
-                }
-            }
+            return lueTeoslistaTiedostosta(tiedosto);
 
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(Muistio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+    }
+
+    private void kirjoitaTeoslistaTiedostoon(List<Teos> teosLista, File tiedosto) throws IOException {
+        FileOutputStream tallennusTiedosto = new FileOutputStream(tiedosto);
+        ObjectOutputStream tallentaja = new ObjectOutputStream(tallennusTiedosto);
+
+        tallentaja.writeObject(teosLista);
+    }
+
+    private List<Teos> lueTeoslistaTiedostosta(File tiedosto) throws IOException, ClassNotFoundException {
+        FileInputStream latausTiedosto = new FileInputStream(tiedosto);
+        if (latausTiedosto.available() > 0) {
+
+            ObjectInputStream lataaja = new ObjectInputStream(latausTiedosto);
+            
+            Object o = lataaja.readObject();
+
+            if (o != null) {
+                return (List<Teos>) o;
+            }
         }
 
         return null;

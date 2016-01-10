@@ -7,6 +7,8 @@ package oma.lukulista.logiikka;
  */
 import java.util.ArrayList;
 import java.util.List;
+import oma.lukulista.domain.Arvosana;
+import oma.lukulista.domain.Kategoria;
 import oma.lukulista.domain.tekija.Kirjailija;
 import oma.lukulista.domain.tekija.Tekija;
 import oma.lukulista.domain.teos.Kirja;
@@ -55,7 +57,7 @@ public class DefaultOhjainTest {
     @Test
     public void kirjanLisaysToimii() {
         Kirja saatio = new Kirja("Säätiö", new Kirjailija("Asimov, Isaac"));
-        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
 
         boolean loytyiko = ohjain.getTeosLista().contains(saatio);
 
@@ -64,9 +66,9 @@ public class DefaultOhjainTest {
 
     @Test
     public void useanKirjanLisaysToimii() {
-        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
-        ohjain.lisaaUusiKirjaListalle("I, Robot", "Asimov, Isaac");
-        ohjain.lisaaUusiKirjaListalle("Sinuhe", "Waltari, Mika");
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
+        ohjain.lisaaUusiKirjaListalle("I, Robot", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
+        ohjain.lisaaUusiKirjaListalle("Sinuhe", "Waltari, Mika", Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
 
         int koko = ohjain.getTeosLista().size();
 
@@ -77,7 +79,7 @@ public class DefaultOhjainTest {
     public void kirjailijanLisaysToimii() {
         Kirjailija asimov = new Kirjailija("Asimov, Isaac");
         Kirja saatio = new Kirja("Säätiö", asimov);
-        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
 
         boolean loytyiko = ohjain.getTekijaLista().contains(asimov);
 
@@ -86,8 +88,8 @@ public class DefaultOhjainTest {
 
     @Test
     public void useanKirjailijanLisaysToimii() {
-        ohjain.lisaaUusiKirjaListalle("I, Robot", "Asimov, Isaac");
-        ohjain.lisaaUusiKirjaListalle("Sinuhe", "Waltari, Mika");
+        ohjain.lisaaUusiKirjaListalle("I, Robot", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
+        ohjain.lisaaUusiKirjaListalle("Sinuhe", "Waltari, Mika", Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
 
         int koko = ohjain.getTekijaLista().size();
 
@@ -97,8 +99,8 @@ public class DefaultOhjainTest {
 
     @Test
     public void kahtaSamaaKirjaaEiLisata() {
-        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
-        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
 
         int koko = ohjain.getTeosLista().size();
 
@@ -107,8 +109,8 @@ public class DefaultOhjainTest {
 
     @Test
     public void kahtaSamaaKirjailijaaEiLisata() {
-        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
-        ohjain.lisaaUusiKirjaListalle("I, Robot", "Asimov, Isaac");
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
+        ohjain.lisaaUusiKirjaListalle("I, Robot", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
 
         int koko = ohjain.getTekijaLista().size();
 
@@ -117,7 +119,7 @@ public class DefaultOhjainTest {
 
     @Test
     public void kirjaLisataanMyosTekijalle() {
-        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
         Tekija asimov = ohjain.haeKirjailijaTaiLuoUusi("Asimov, Isaac");
         boolean loytyiko = asimov.getTeokset().contains(new Kirja("Säätiö", asimov));
 
@@ -138,7 +140,7 @@ public class DefaultOhjainTest {
     
     @Test
     public void teoksenPoistoOnnistuu(){
-        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac");
+        ohjain.lisaaUusiKirjaListalle("Säätiö", "Asimov, Isaac", Kategoria.TYHJA, Arvosana.EI_ARVOSTELTU);
         ohjain.poistaTeosListalta(new Kirja("Säätiö", new Kirjailija("Asimov, Isaac")));
         
         assertTrue(ohjain.getTeosLista().isEmpty());

@@ -19,7 +19,7 @@ public enum Arvosana {
         this.kuvaus = kuvaus;
     }
 
-    public int getArvosana() {
+    public int getNumero() {
         return arvosana;
     }
 

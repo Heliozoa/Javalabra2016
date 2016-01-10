@@ -6,15 +6,22 @@
 package oma.lukulista.domain;
 
 /**
- * Teoksen lukutilanne.
+ * Teoksen lukutilanne. Tunnusluku on järjestämistä varten, joka tapahtuu
+ * suurimmasta pienimpään.
  */
-public enum Kategoria {
-    TYHJA("Ei kategoriaa"), BACKLOG("Backlog"), JATETTY_KESKEN("Jätetty kesken"), KESKEN("Kesken"), LUETTU("Luettu");
+public enum Kategoria implements Comparable<Kategoria> {
+    TYHJA(0, "Ei kategoriaa"), BACKLOG(3, "Backlog"), JATETTY_KESKEN(1, "Jätetty kesken"), KESKEN(4, "Kesken"), LUETTU(2, "Luettu");
 
+    private int tunnus;
     private String kuvaus;
 
-    Kategoria(String kuvaus) {
+    Kategoria(int tunnus, String kuvaus) {
+        this.tunnus = tunnus;
         this.kuvaus = kuvaus;
+    }
+
+    public int getTunnus() {
+        return tunnus;
     }
 
     @Override

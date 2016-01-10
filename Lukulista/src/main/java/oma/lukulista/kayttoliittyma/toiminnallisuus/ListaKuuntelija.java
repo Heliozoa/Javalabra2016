@@ -28,7 +28,7 @@ public class ListaKuuntelija implements ListSelectionListener {
     }
 
     /**
-     * Näyttää TietoPaneelissa valitun teoksen tiedot.
+     * Näyttää TietoPaneelissa valitun teoksen tiedot kun valinta muuttuu.
      *
      * @param lse
      */

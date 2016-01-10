@@ -7,6 +7,7 @@ package oma.lukulista.logiikka;
 
 import java.util.List;
 import oma.lukulista.domain.Arvosana;
+import oma.lukulista.domain.Jarjestys;
 import oma.lukulista.domain.Kategoria;
 import oma.lukulista.domain.tekija.Tekija;
 import oma.lukulista.domain.teos.Teos;
@@ -16,13 +17,6 @@ import oma.lukulista.domain.teos.Teos;
  * joka hoitaa varsinaiset toiminnat.
  */
 public interface Ohjain {
-
-    /**
-     * @param kirjanNimi Lisättävän kirjan nimi.
-     * @param tekijanNimi Kirjan tekijän nimi.
-     * @see #lisaaUusiKirjaListalle(java.lang.String, java.lang.String, oma.lukulista.domain.Kategoria, oma.lukulista.domain.Arvosana)
-     */
-    public void lisaaUusiKirjaListalle(String kirjanNimi, String tekijanNimi);
 
     /**
      *
@@ -52,12 +46,12 @@ public interface Ohjain {
     /**
      * Tallentaa teoslistan tiedostoon Muistion avulla.
      */
-    public void tallenna();
+    public void tallennaTiedostoon();
 
     /**
-     * Lataa teoslistan tiedostosta muistion avulla.
+     * Lataa teoslistan tiedostosta Muistion avulla.
      */
-    public void lataa();
+    public void lataaTiedostosta();
 
     /**
      * Poistaa teoksen listalta. Jälkeenpäin tarkistaa, jääkö poistetun teoksen
@@ -67,7 +61,24 @@ public interface Ohjain {
      */
     public void poistaTeosListalta(Teos poistettava);
 
+    /**
+     * Filtteröi koko teoslistan parametrin filtterillä. Filtteröidyn listan saa
+ getFiltteroityJaJarjestettyLista() -metodilla.
+     *
+     * @param filtteri Jos teoksen tiedoista löytyy filtteri
+     */
+    public void setFiltteri(String filtteri);
+
+    /**
+     * Järjestää teoslistan parametrin määrittämän järjestyksen mukaisesti.
+     *
+     * @param jarjestys Järjestys, johon lista laitetaan.
+     */
+    public void setJarjestys(Jarjestys jarjestys);
+
     public List<Teos> getTeosLista();
+
+    public List<Teos> getFiltteroityJaJarjestettyLista();
 
     public List<Tekija> getTekijaLista();
 
